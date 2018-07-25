@@ -45,6 +45,7 @@
 
 
 ## favorite Table
+いいね機能の中間テーブル
 |Column|Type|Option|
 |------|----|------|
 |user_id|reference|null: false, foreign_key: true|
@@ -55,6 +56,7 @@
 - belongs_to: tweet
 
 ## retweet table
+リツイート機能の中間テーブル
 |Column|Type|Options|
 |------|----|-------|
 |user_id|reference|null: false, foreign_key: true|
@@ -65,6 +67,7 @@
 - belongs_to: tweet
 
 ## relationship tables
+フォロー機能の中間テーブル
 |Column|Type|Options|
 |------|----|-------|
 |following_id|reference|null: false, foreign_key: true|
