@@ -44,8 +44,9 @@
 - has_many: users, through: retweets
 
 
-## favorite Table
+## favorite table
 いいね機能の中間テーブル
+
 |Column|Type|Option|
 |------|----|------|
 |user_id|reference|null: false, foreign_key: true|
@@ -57,6 +58,7 @@
 
 ## retweet table
 リツイート機能の中間テーブル
+
 |Column|Type|Options|
 |------|----|-------|
 |user_id|reference|null: false, foreign_key: true|
@@ -66,8 +68,9 @@
 - belongs_to: user
 - belongs_to: tweet
 
-## relationship tables
+## relationship table
 フォロー機能の中間テーブル
+
 |Column|Type|Options|
 |------|----|-------|
 |following_id|reference|null: false, foreign_key: true|
