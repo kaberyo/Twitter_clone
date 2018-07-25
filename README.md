@@ -19,10 +19,13 @@
 |likes_count|string||
 
 ### Association
-- has_many: favorites
-- has_many: retweets
 - has_many: tweets
+- has_many: favorites
+- has_many: tweets, through: :favorites
+- has_many: retweets
+- has_many: tweets, through: :retweets
 - has_many: relationships
+- has_many: followed, through: :relationships
 
 ## tweets tabel
 |Column|Type|Option|
@@ -35,8 +38,11 @@
 
 ### Association
 - belongs_to: user
-- has_many: favorites, through: users
-- has_many: retweets, through: users
+- has_many: favorites
+- has_many: users, through: favorites
+- has_many: retweets
+- has_many: users, through: retweets
+
 
 ## favorite Table
 |Column|Type|Option|
@@ -61,8 +67,9 @@
 ## relationship tables
 |Column|Type|Options|
 |------|----|-------|
-|user_id|reference|null: false, foreign_key: true|
-|follow_id|reference|null: false, foreign_key: true|
+|following_id|reference|null: false, foreign_key: true|
+|followed_id|reference|null: false, foreign_key: true|
 
 ### Association
-- belongs_to: user
+- belongs_to :following, class_name: "User"
+- belongs_to :followed, class_name: "User"
