@@ -1,0 +1,17 @@
+.content-timeline.col-md-4
+  = render "tweetForm"
+  %button.col-md-2.offset-md-10.btn.btn-info{:type => "button"} Tweet
+  - 5.times do
+    .card.my-2
+      .card-body
+        .tweet-header
+          %h5.card-title User
+          %h6.card-subtitle.mb-2.text-muted @Username
+        .tweet-main
+          %a.text-muted.card-link{href: "#"} ビューの作成中ビューの作成中ビューの作成中ビューの作成中ビューの作成中ビューの作成中ビューの作成中ビューの作成中ビューの作成中ビューの作成中ビューの作成中ビューの作成中ビューの作成中ビューの作成中ビューの作成中
+        .tweet-media
+        .tweet-bottom
+          %i.fas.fa-reply
+          %i.fas.fa-retweet
+          %i.fas.fa-heart
+          %i.fas.fa-envelope
