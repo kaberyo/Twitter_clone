@@ -1,8 +1,8 @@
-/ ----------------------------------------------------------------
-= render "navbar"
-/ ----------------------------------------------------------------
+= render "tweets/../partial/navbar"
 .wrapper
   .dashboard.row
-    = render "userPanel"
-    = render "timelinePanel"
-    = render "recomendPanel"
+    = render "tweets/../partial/userPanel"
+    .content-timeline.col-md-4
+      = render "tweets/../partial/tweetForm"
+      = render "tweets/../partial/tweetList"
+    = render "tweets/../partial/recomendPanel"
