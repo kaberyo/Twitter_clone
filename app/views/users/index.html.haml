@@ -1,0 +1,31 @@
+= render "users/../partial/navbar"
+.wrapper
+  .container-fluid
+    %img.img-fluid.header-pic{alt: "user-avatar-pic", src: "tweets/../../assets/header.png"}
+  %nav.navbar.navbar-expand-lg.bg-light.navbar-light.justify-content-center.sticky-top
+    %ul.navbar-nav
+      %li.nav-item
+        %a.nav-link{:href => "#"} ツイート
+      %li.nav-item
+        %a.nav-link{:href => "#"} フォロー
+      %li.nav-item
+        %a.nav-link{:href => "#"} フォロワー
+      %li.nav-item
+        %a.nav-link{:href => "#"} いいね
+  .container-fluid
+    .wrapper
+      .dashboard.row
+        .content-left.col-md-3.offset-md-1
+          .card.my-4
+            %img.card-img-top{alt: "user-avatar-pic", src: "tweets/../../assets/avator.jpg"}
+            .card-body
+              %h5.card-title User
+              %h6.card-subtitle.mb-2.text-muted @Username
+              %p.card-text Biology a.k.a About 自己紹介とか経歴とかの欄 その他諸々諸々諸々
+            %ul.list-group.list-group-flush
+              %li.list-group-item location
+              %li.list-group-item website
+        .content-timeline.col-md-4.my-3
+          = render "tweets/../partial/tweetList"
+        = render "tweets/../partial/recomendPanel"
+
