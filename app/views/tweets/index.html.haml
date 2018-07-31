@@ -1,67 +1,8 @@
-/ ----------------------------------------------------------------
-%nav.navbar.navbar-expand-lg.navbar-light.bg-light.border-bottom
-  %a.navbar-brand.h1.text-info{href: "#"} Twitter
-  %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
-    %span.navbar-toggler-icon
-  #navbarSupportedContent.collapse.navbar-collapse
-    %ul.navbar-nav.mr-auto
-      %li.nav-item.active
-        %a.nav-link{href: "#"}
-          ホーム
-          %span.sr-only (current)
-      %li.nav-item
-        %a.nav-link{href: "#"} モーメント
-      %li.nav-item
-        %a.nav-link{href: "#"} 通知
-      %li.nav-item
-        %a.nav-link{href: "#"} メッセージ
-    %form.form-inline.my-2.my-lg-0
-      %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search", type: "search"}
-      %button.btn.btn-outline-success.my-2.my-sm-0{type: "submit"} Search
-    %button.btn.btn-info.mx-2 Tweet
-/ ----------------------------------------------------------------
+= render "tweets/../partial/navbar"
 .wrapper
   .dashboard.row
-    .content-left.col-md-3.offset-md-1
-      .card.my-4
-        .card-body
-          .body-top
-            %img.rounded-top.card-img-top{alt: "user-cover-pic", src: "tweets/../../assets/header.png"}
-            %img.card-img-top{alt: "user-cover-pic", src: "tweets/../../assets/avator.jpg"}
-            %h5.card-title User
-            %h6.card-subtitle.mb-2.text-muted @Username
-          .body-bottom.d-md-inline-flex
-            %a.text-muted.card-link{href: "#"} ツイート：0
-            %a.text-muted.card-link{href: "#"} フォロー：0
-            %a.text-muted.card-link{href: "#"} フォロワー：0
-
+    = render "tweets/../partial/userPanel"
     .content-timeline.col-md-4
-      %form.my-4
-        .form-group
-          %label{:for => "exampleFormControlTextarea1"}
-          %textarea#exampleFormControlTextarea1.form-control{:placeholder => "いまどうしてる？", :rows => "3"}
-        %i.fas.fa-image.mx-2
-        %i.fas.fa-map-marker-alt.mx-2
-
-      %button.col-md-2.offset-md-10.btn.btn-info{:type => "button"} Tweet
-      - 5.times do
-        .card.my-2
-          .card-body
-            .tweet-header
-              %h5.card-title User
-              %h6.card-subtitle.mb-2.text-muted @Username
-            .tweet-main
-              %a.text-muted.card-link{href: "#"} ビューの作成中ビューの作成中ビューの作成中ビューの作成中ビューの作成中ビューの作成中ビューの作成中ビューの作成中ビューの作成中ビューの作成中ビューの作成中ビューの作成中ビューの作成中ビューの作成中ビューの作成中
-            .tweet-media
-            .tweet-bottom
-              %i.fas.fa-reply
-              %i.fas.fa-retweet
-              %i.fas.fa-heart
-              %i.fas.fa-envelope
-
-    .content-rihgt.col-md-3
-      .card.my-4
-        .card-body
-          %h5.card-title おすすめユーザー
-          %a.col-md-4.offset-md-8.btn.btn-primary{:href => "#"} フォローする
-
+      = render "tweets/../partial/tweetForm"
+      = render "tweets/../partial/tweetList"
+    = render "tweets/../partial/recomendPanel"
