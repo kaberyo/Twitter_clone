@@ -16,5 +16,16 @@
         %a.nav-link{href: "#"} メッセージ
     %form.form-inline.my-2.my-lg-0
       %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search", type: "search"}
-      %button.btn.btn-outline-success.my-2.my-sm-0{type: "submit"} Search
+      %button.btn.btn-outline-success.my-2.my-sm-0.mx-2{type: "submit"} Search
+
+    .btn-group{"aria-label" => "Button group with nested dropdown", :role => "group"}
+      %button.btn.btn-secondary{:type => "button"} User
+      .btn-group{:role => "group"}
+        %button#btnGroupDrop1.btn.btn-secondary.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+          More
+        .dropdown-menu{"aria-labelledby" => "btnGroupDrop1"}
+          %a.dropdown-item{:href => "#"} プロフィール
+          %a.dropdown-item{:href => "#"} 設定
+          %a.dropdown-item{:href => "#"} ログアウト
+
     %button.btn.btn-info.mx-2 Tweet
