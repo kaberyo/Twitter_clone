@@ -2,16 +2,17 @@
 .wrapper
   .container-fluid
     %img.img-fluid.header-pic{alt: "user-avatar-pic", src: "tweets/../../assets/header.png"}
-  %nav.navbar.navbar-expand-lg.bg-light.navbar-light.justify-content-center.sticky-top
-    %ul.navbar-nav
-      %li.nav-item
+  %nav.navbar.navbar-expand-lg.bg-light.navbar-light.row.sticky-top
+    %ul.navbar-nav.col-md-4.offset-md-4
+      %li.nav-item.col-md-3
         %a.nav-link{:href => "#"} ツイート
-      %li.nav-item
+      %li.nav-item.col-md-3
         %a.nav-link{:href => "#"} フォロー
-      %li.nav-item
+      %li.nav-item.col-md-3
         %a.nav-link{:href => "#"} フォロワー
-      %li.nav-item
+      %li.nav-item.col-md-3
         %a.nav-link{:href => "#"} いいね
+    %button.btn.btn-outline-secondary.col-md-2.offset-md-1{:type => "button"} プロフィールを編集
   .container-fluid
     .wrapper
       .dashboard.row
