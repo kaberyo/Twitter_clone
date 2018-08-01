@@ -1,6 +1,5 @@
 .sign-in-body
   .sign-in-left
-
     .sign-in-left-center-body
       %ul
         %li.sign-in-left-center-body-list あなたの「好き」をフォローしよう。
@@ -8,18 +7,16 @@
         %li.sign-in-left-center-body-list Twitterに参加しましょう。
 
   .sign-in-right
-
     .sign-in-form
-      %form.sign-in-right-top-body-form{action: "#", method: "post"}
+      = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'sign-in-right-top-body-form' }) do |f|
         .sign-in-right-top-body-form-mailadress-input
-          %input.sign-in-right-top-body-form-mailadress{autocomplete: "username", name: "session[username_or_email]", placeholder: "電話番号/メールアドレス/ユーザー名", type: "text"}/
+          = f.email_field :email, placeholder: "メールアドレス", class: 'sign-in-right-top-body-form-mailadress'
         .sign-in-right-top-body-form-password
-          %input.sign-in-right-top-body-form-password-input{autocomplete: "current-password", name: "session[password]", placeholder: "パスワード", type: "password"}/
+          = f.password_field :password, placeholder: "パスワード", class: 'sign-in-right-top-body-form-password-input'
           .sign-in-right-top-body-form-password-block-forget
             %a.sign-in-right-top-body-form-password-forget{href: "#"} パスワードを忘れた場合はこちら
         .sign-in-right-top-body-form-btn
-          %input.sign-in-right-top-body-form-btn-input{type: "submit",value: "ログイン"}/
-
+          = f.submit "ログイン", type: "submit", class: "sign-in-right-top-body-form-btn-input"
 
     .sign-in-right-center-body
       .sign-in-right-center-body-icon
@@ -30,11 +27,9 @@
         %strong.sign-in-right-center-body-instraction Twitterをはじめよう
         .sign-in-right-center-body-btn
           .sign-in-right-center-body-makeaccount
-            %a{href: "#"} アカウント作成
+            = link_to "アカウント作成", new_user_registration_path
           .sign-in-right-center-body-signin
             %a{href: "#"} ログイン
-
-
 
   .sign-in-footer
     %ul
