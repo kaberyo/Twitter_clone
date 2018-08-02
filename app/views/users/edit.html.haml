@@ -1,30 +1,33 @@
 .profileEdit
-  %form
+  = form_for(current_user) do |f|
     .profileEdit__header
       .profileEdit__header__center
         %i.fas.fa-arrow-left.fa-2x.profileEdit__header__center--icon
         .profileEdit__header__center--title プロフィール編集
-        .profileEdit__header__center--btn 保存
+        .profileEdit__header__center--position
+          = f.submit "保存", type: "submit" , class: "profileEdit__header__center--btn"
     .profileEdit__form
       .profileEdit__form__cover
         %label.profileEdit__form__cover--icon
           %i.fas.fa-camera.fa-3x
-          %input.profileEdit__form__cover--form{type: "file"}
+          = file_field :cover , class: "profileEdit__form__cover--form"
+          / %input.profileEdit__form__cover--form{type: "file"}
       .profileEdit__form__avater
         %label.profileEdit__form__avater--icon
           %i.fas.fa-camera.fa-2x
-          %input.profileEdit__form__avater--form{type: "file"}
+          = file_field :avater , class: "profileEdit__form__avater--form"
+          / %input.profileEdit__form__avater--form{type: "file"}
       .profileEdit__form__body
         .profileEdit__form__letter 名前
         .cp_iptxt.ef
-          %input
+          = f.text_field :name, placeholder: "名前"
         .profileEdit__form__letter 自己紹介
         .cp_iptxt.ef
-          %input
+          = f.text_field :about, placeholder: "自己紹介"
         .profileEdit__form__letter 場所
         .cp_iptxt.ef
-          %input
+          = f.text_field :location, placeholder: "場所"
         .profileEdit__form__letter ウェブサイト
         .cp_iptxt.ef
-          %input
+          = f.text_field :website, placeholder: "ウェブサイト"
 
