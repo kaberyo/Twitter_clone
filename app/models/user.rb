@@ -6,9 +6,9 @@ class User < ActiveRecord::Base
 
   has_many :tweets
   has_many :favorites
-  has_many :tweets, through: :favorites
+  # has_many :tweets, through: :favorites
   has_many :retweets
-  has_many :tweets, through: :retweets
+  # has_many :tweets, through: :retweets
   has_many :relationships
   has_many :followed, through: :relationships
 

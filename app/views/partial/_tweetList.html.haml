@@ -1,13 +1,24 @@
-.card.my-2
-  .card-body
-    .tweet-header
-      %h5.card-title #{user.name}
-      %h6.card-subtitle.mb-2.text-muted #{user.username}
-    .tweet-main
-      %a.text-muted #{user.tweets}
-    .tweet-media
-    .tweet-bottom
-      %i.fas.fa-reply
-      %i.fas.fa-retweet
-      %i.fas.fa-heart
-      %i.fas.fa-envelope
+- user.tweets.reverse_order.each do |tweet|
+  .card.my-2
+    .card-body.row
+      .tweet__left.col-md-2
+        .tweet__left--user-avatar
+          %img.rounded.img-fluid{alt: "user-avatar-pic", src: "tweets/../../assets/avator.jpg"}
+      .tweet__right.col-md-10
+        .tweet__right--header
+          %h5.card-title.d-inline
+            = tweet.user.name
+          %h6.card-subtitle.mb-2.text-muted.d-inline
+            = tweet.user.username
+          %h6.card-subtitle.mb-2.text-muted.d-inline
+            = tweet.created_at
+        .tweet__right--main
+          %a.text-muted
+            = tweet.text
+            = image_tag tweet.media.url, class: 'img-fluid' if tweet.media.present?
+        .tweet__right--media
+        .tweet__right--bottom
+          %i.fas.fa-reply
+          %i.fas.fa-retweet
+          %i.fas.fa-heart
+          %i.fas.fa-envelope
