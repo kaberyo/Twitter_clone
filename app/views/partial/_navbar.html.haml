@@ -26,7 +26,7 @@
         .dropdown-menu{"aria-labelledby" => "btnGroupDrop1"}
           %a.dropdown-item{:href => "#"} プロフィール
           %a.dropdown-item{:href => "#"} 設定
-          %a.dropdown-item{:href => "#"} ログアウト
+          = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'dropdown-item'
     %button.btn.btn-info.mx-2{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
       Tweet
     #myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
@@ -38,4 +38,3 @@
               %span{"aria-hidden" => "true"} ×
           .modal-body
             = render 'tweets/../partial/tweetForm'
-
