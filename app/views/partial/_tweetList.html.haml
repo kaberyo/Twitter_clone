@@ -3,7 +3,7 @@
     .tweet.card-body.row
       .tweet__left.col-md-2
         .tweet__left--user-avatar
-          %img.rounded.img-fluid{alt: "user-avatar-pic", src: "tweets/../../assets/avator.jpg"}
+          = image_tag tweet.user.avator.url, class: 'img-fluid' if tweet.user.avator.present?
       .tweet__right.col-md-10
         .tweet__right--header
           %h5.card-title.d-inline
@@ -13,7 +13,7 @@
           %h6.card-subtitle.mb-2.text-muted.d-inline
             = tweet.created_at
           .btn-group.float-right
-            %button.btn.btn-muted.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+            %button.btn.btn-muted.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", type: "button"}
             .dropdown-menu
               %a.dropdown-item{:href => "#"} メニュー1
               %a.dropdown-item{:href => "#"} メニュー2
