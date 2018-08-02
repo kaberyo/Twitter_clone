@@ -1,8 +1,9 @@
 = render "tweets/../partial/navbar"
 .wrapper
-  .dashboard.row
-    = render "tweets/../partial/userPanel"
-    .content-timeline.col-md-4
-      = render "tweets/../partial/tweetForm"
-      = render "tweets/../partial/tweetList"
+  .content.row
+    = render "tweets/../partial/userPanel", {user: current_user}
+    .content__timeline.col-md-4
+      .my-4.bg-light
+        = render "tweets/../partial/tweetForm"
+      = render "tweets/../partial/tweetList",{user: current_user}
     = render "tweets/../partial/recomendPanel"
