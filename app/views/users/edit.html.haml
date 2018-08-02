@@ -1,14 +1,30 @@
 .profileEdit
-  .profileEdit__header
-    %a
-      %img.profileEdit__header--back
-    .profileEdit__header--title
-    / .profileEdit__header--back
-  %form.profileEdit__form
-    %input.profileEdit__form__cover
-    %input.profileEdit__form__avater
-    %input.profileEdit__form__about
-    %input.profileEdit__form__location
-    %input.profileEdit__form__color
-    %input.profileEdit__form__website
-    %input.profileEdit__form__submit
+  %form
+    .profileEdit__header
+      .profileEdit__header__center
+        %i.fas.fa-arrow-left.fa-2x.profileEdit__header__center--icon
+        .profileEdit__header__center--title プロフィール編集
+        .profileEdit__header__center--btn 保存
+    .profileEdit__form
+      .profileEdit__form__cover
+        %label.profileEdit__form__cover--icon
+          %i.fas.fa-camera.fa-3x
+          %input.profileEdit__form__cover--form{type: "file"}
+      .profileEdit__form__avater
+        %label.profileEdit__form__avater--icon
+          %i.fas.fa-camera.fa-2x
+          %input.profileEdit__form__avater--form{type: "file"}
+      .profileEdit__form__body
+        .profileEdit__form__letter 名前
+        .cp_iptxt.ef
+          %input
+        .profileEdit__form__letter 自己紹介
+        .cp_iptxt.ef
+          %input
+        .profileEdit__form__letter 場所
+        .cp_iptxt.ef
+          %input
+        .profileEdit__form__letter ウェブサイト
+        .cp_iptxt.ef
+          %input
+
