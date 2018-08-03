@@ -1,7 +1,7 @@
-%form.my-4.bg-light
-  .form-group
-    %label{:for => "exampleFormControlTextarea1"}
-    %textarea#exampleFormControlTextarea1.form-control.col-md-10.offset-md-1{:placeholder => "いまどうしてる？", :rows => "3"}
-  / %i.fas.fa-image
-  / %i.fas.fa-map-marker-alt
-  %button.col-md-2.offset-md-9.my-4.btn.btn-info{:type => "button"} Tweet
+- @tweet = Tweet.new
+= form_for @tweet do |f|
+  = f.text_area :text, class: 'form-control col-md-10 offset-md-1', placeholder: 'いまどうしてる？'
+  = f.label :media, class: 'tweet-media col-md-1' do
+    / %i.fas.fa-camera-retro
+    = f.file_field :media, class: ''
+  = f.submit 'Tweet', class: 'col-md-2 offset-md-9 my-1 btn btn-info'

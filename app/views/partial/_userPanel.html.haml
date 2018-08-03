@@ -2,11 +2,13 @@
   .card.my-4
     .card-body
       .body-top
-        %img.rounded-top.card-img-top{alt: "user-cover-pic", src: "tweets/../../assets/header.png"}
-        %img.card-img-top{alt: "user-avatar-pic", src: "tweets/../../assets/avator.jpg"}
-        %h5.card-title User
-        %h6.card-subtitle.mb-2.text-muted @Username
+        %img.rounded-top.card-img-top
+          = image_tag current_user.cover.url, class: 'img-fluid' if current_user.cover.present?
+        %img.card-img-top
+          = image_tag current_user.avator.url, class: 'img-fluid' if current_user.avator.present?
+        %h5.card-title #{current_user.name}
+        %h6.card-subtitle.mb-2.text-muted #{current_user.username}
       .body-bottom.d-md-inline-flex
-        %a.text-muted.card-link{href: "#"} ツイート：0
-        %a.text-muted.card-link{href: "#"} フォロー：0
-        %a.text-muted.card-link{href: "#"} フォロワー：0
+        %a.text-muted.card-link{href: "#"} ツイート：#{current_user.tweets_count}
+        %a.text-muted.card-link{href: "#"} フォロー：#{current_user.follows_count}
+        %a.text-muted.card-link{href: "#"} フォロワー：#{current_user.followers_count}
