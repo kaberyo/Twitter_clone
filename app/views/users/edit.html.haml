@@ -21,6 +21,9 @@
         .profileEdit__form__letter 名前
         .cp_iptxt.ef
           = f.text_field :name, placeholder: "名前"
+        .profileEdit__form__letter @ユーザーネーム
+        .cp_iptxt.ef
+          = f.text_field :username, placeholder: "＠ユーザーネーム"
         .profileEdit__form__letter 自己紹介
         .cp_iptxt.ef
           = f.text_field :about, placeholder: "自己紹介"
@@ -30,4 +33,3 @@
         .profileEdit__form__letter ウェブサイト
         .cp_iptxt.ef
           = f.text_field :website, placeholder: "ウェブサイト"
-
