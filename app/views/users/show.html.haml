@@ -1,7 +1,7 @@
 = render "users/../partial/navbar"
 .wrapper
   .container-fluid
-    %img.img-fluid.header-pic{alt: "user-avatar-pic", src: "tweets/../../assets/header.png"}
+    = image_tag @user.cover.url, class: 'img-fluid header-pic' if @user.cover.present?
   %nav.navbar.navbar-expand-lg.bg-light.navbar-light.sticky-top.row
     %ul.navbar-nav.col-md-4.offset-md-4
       %li.nav-item.col-md-3
@@ -21,15 +21,20 @@
       .dashboard.row
         .content-left.col-md-3.offset-md-1
           .card.my-4
-            %img.card-img-top{alt: "user-avatar-pic", src: "tweets/../../assets/avator.jpg"}
+            = image_tag @user.avator.url, class: 'img-fluid' if @user.avator.present?
             .card-body
-              %h5.card-title User
-              %h6.card-subtitle.mb-2.text-muted @Username
-              %p.card-text Biology a.k.a About 自己紹介とか経歴とかの欄 その他諸々諸々諸々
+              %h5.card-title
+              = @user.name
+              %h6.card-subtitle.mb-2.text-muted
+              = "@" + @user.username
+              %p.card-text
+              = "about:" + @user.about
             %ul.list-group.list-group-flush
-              %li.list-group-item location
-              %li.list-group-item website
+              %li.list-group-item
+              = "location:" + @user.location
+              %li.list-group-item
+              = "website:" + @user.website
 
         .content-timeline.col-md-4.my-3
-          = render "tweets/../partial/tweetList"
+          = render "tweets/../partial/tweetList" ,{user: current_user}
         = render "tweets/../partial/recomendPanel"
