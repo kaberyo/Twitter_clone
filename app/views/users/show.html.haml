@@ -12,7 +12,10 @@
         %a.nav-link{:href => "#"} フォロワー
       %li.nav-item.col-md-3
         %a.nav-link{:href => "#"} いいね
-    %button.btn.btn-outline-secondary.col-md-2.offset-md-1{:type => "button"} プロフィールを編集
+    / %button.btn.btn-outline-secondary.col-md-2.offset-md-1{:type => "button"} プロフィールを編集
+    = link_to "プロフィールを編集", "/users/#{current_user.id}/edit" ,class: ' btn btn-outline-secondary col-md-2.offset-md-1'
+    /users/:id/edit
+
   .container-fluid
     .wrapper
       .dashboard.row
