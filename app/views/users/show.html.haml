@@ -26,14 +26,14 @@
               %h5.card-title
               = @user.name
               %h6.card-subtitle.mb-2.text-muted
-              = "@" + @user.username
+              = @user.username
               %p.card-text
-              = "about:" + @user.about
+              = @user.about
             %ul.list-group.list-group-flush
               %li.list-group-item
-              = "location:" + @user.location
+              = @user.location
               %li.list-group-item
-              = "website:" + @user.website
+              = @user.website
 
         .content-timeline.col-md-4.my-3
           = render "tweets/../partial/tweetList" ,{user: current_user}
