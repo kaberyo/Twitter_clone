@@ -10,12 +10,12 @@
       .profileEdit__form__cover
         %label.profileEdit__form__cover--icon
           %i.fas.fa-camera.fa-3x
-          = file_field :cover , class: "profileEdit__form__cover--form"
+          = f.file_field :cover , class: "profileEdit__form__cover--form"
           / %input.profileEdit__form__cover--form{type: "file"}
       .profileEdit__form__avater
         %label.profileEdit__form__avater--icon
           %i.fas.fa-camera.fa-2x
-          = file_field :avater , class: "profileEdit__form__avater--form"
+          = f.file_field :avator , class: "profileEdit__form__avater--form"
           / %input.profileEdit__form__avater--form{type: "file"}
       .profileEdit__form__body
         .profileEdit__form__letter 名前

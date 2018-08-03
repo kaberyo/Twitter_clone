@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
   has_many :relationships
   has_many :followed, through: :relationships
 
+  mount_uploader :cover , MediaUploader
+  mount_uploader :avator , MediaUploader
+
+
 end
