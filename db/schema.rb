@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180726055355) do
+ActiveRecord::Schema.define(version: 20180803062013) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer  "user_id",    limit: 4, null: false
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20180726055355) do
     t.integer  "parent_id",  limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "fav_count",  limit: 4
   end
 
   add_index "tweets", ["user_id"], name: "fk_rails_003928b7f5", using: :btree
