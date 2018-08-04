@@ -1,0 +1,40 @@
+= render "users/../partial/navbar"
+.wrapper
+  .container-fluid
+    = image_tag @user.cover.url, class: 'img-fluid header-pic' if @user.cover.present?
+  %nav.navbar.navbar-expand-lg.bg-light.navbar-light.sticky-top.row
+    %ul.navbar-nav.col-md-4.offset-md-4
+      %li.nav-item.col-md-3
+        %a.nav-link{:href => "#"} ツイート
+      %li.nav-item.col-md-3
+        %a.nav-link{:href => "#"} フォロー
+      %li.nav-item.col-md-3
+        %a.nav-link{:href => "#"} フォロワー
+      %li.nav-item.col-md-3
+        %a.nav-link{:href => "#"} いいね
+    / %button.btn.btn-outline-secondary.col-md-2.offset-md-1{:type => "button"} プロフィールを編集
+    = link_to "プロフィールを編集", "/users/#{current_user.id}/edit" ,class: ' btn btn-outline-secondary col-md-2.offset-md-1'
+    /users/:id/edit
+
+  .container-fluid
+    .wrapper
+      .dashboard.row
+        .content-left.col-md-3.offset-md-1
+          .card.my-4
+            = image_tag @user.avator.url, class: 'img-fluid' if @user.avator.present?
+            .card-body
+              %h5.card-title
+              = @user.name
+              %h6.card-subtitle.mb-2.text-muted
+              = @user.username
+              %p.card-text
+              = @user.about
+            %ul.list-group.list-group-flush
+              %li.list-group-item
+              = @user.location
+              %li.list-group-item
+              = @user.website
+
+        .content-timeline.col-md-4.my-3
+          = render "tweets/../partial/tweetList" ,{user: current_user}
+        = render "tweets/../partial/recomendPanel"
