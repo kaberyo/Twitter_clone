@@ -1,0 +1,8 @@
+= render "tweets/../partial/navbar"
+.wrapper
+  .content.row
+    = render "tweets/../partial/recomendPanel"
+
+.row-eq-height
+  - @users.each do |user|
+    = render partial: "partial/userCard" , locals: {user: user}

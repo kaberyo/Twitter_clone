@@ -12,10 +12,8 @@
         %a.nav-link{:href => "#"} フォロワー
       %li.nav-item.col-md-3
         %a.nav-link{:href => "#"} いいね
-    / %button.btn.btn-outline-secondary.col-md-2.offset-md-1{:type => "button"} プロフィールを編集
-    = link_to "プロフィールを編集", "/users/#{current_user.id}/edit" ,class: ' btn btn-outline-secondary col-md-2.offset-md-1'
-    /users/:id/edit
-
+    = link_to "プロフィールを編集", "/users/#{current_user.id}/edit" ,class: ' btn btn-outline-secondary col-md-2 offset-md-1'
+    = render "partial/follow_form" ,{user: @user}
   .container-fluid
     .wrapper
       .dashboard.row
@@ -38,3 +36,4 @@
         .content-timeline.col-md-4.my-3
           = render "tweets/../partial/tweetList" ,{user: current_user}
         = render "tweets/../partial/recomendPanel"
+

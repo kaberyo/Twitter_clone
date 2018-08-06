@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180806060505) do
+ActiveRecord::Schema.define(version: 20180806070427) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer  "user_id",    limit: 4, null: false
@@ -24,14 +24,14 @@ ActiveRecord::Schema.define(version: 20180806060505) do
   add_index "favorites", ["user_id"], name: "fk_rails_d15744e438", using: :btree
 
   create_table "relationships", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4, null: false
-    t.integer  "tweet_id",   limit: 4, null: false
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "following_id", limit: 4, null: false
+    t.integer  "follower_id",  limit: 4, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  add_index "relationships", ["tweet_id"], name: "fk_rails_028d4b98c7", using: :btree
-  add_index "relationships", ["user_id"], name: "fk_rails_a3d77c3b00", using: :btree
+  add_index "relationships", ["follower_id", "following_id"], name: "index_relationships_on_follower_id_and_following_id", unique: true, using: :btree
+  add_index "relationships", ["following_id"], name: "fk_rails_a3d77c3b00", using: :btree
 
   create_table "retweets", force: :cascade do |t|
     t.integer  "user_id",    limit: 4, null: false
@@ -89,8 +89,8 @@ ActiveRecord::Schema.define(version: 20180806060505) do
 
   add_foreign_key "favorites", "tweets"
   add_foreign_key "favorites", "users"
-  add_foreign_key "relationships", "tweets"
-  add_foreign_key "relationships", "users"
+  add_foreign_key "relationships", "tweets", column: "follower_id"
+  add_foreign_key "relationships", "users", column: "following_id"
   add_foreign_key "retweets", "tweets"
   add_foreign_key "retweets", "users"
   add_foreign_key "tweets", "users"

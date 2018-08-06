@@ -1,0 +1,26 @@
+.cardBody{
+  height: 256px;
+  margin: 0 5px 5px 5px;
+  position: relative;
+  .circlePosition{
+    position: absolute;
+    left: 20px;
+    top: 50px;
+  }
+}
+
+.card-body-title{
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.btn-right{
+  position: absolute;
+  top:110px;
+  right:20px;
+}
+
+.row-eq-height {
+    display: flex;
+    flex-wrap: wrap;
+}
