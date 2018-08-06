@@ -5,4 +5,4 @@
 
 .row-eq-height
   - @users.each do |user|
-    = render partial: "partial/userCard" , locals: {user: user}
+    = render "partial/userCard" , {user: user}
