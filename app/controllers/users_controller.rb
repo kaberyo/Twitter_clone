@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def index
      @users = User.where('name LIKE(?)', "%#{params[:keyword]}%").where.not(name: current_user.name)
+     # @user = User.find(params[:id])
   end
 
   def edit
@@ -17,6 +18,17 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
+
+    def following
+      @user  = User.find(params[:id])
+      @users = @user.following
+    end
+
+    def followers
+      @user  = User.find(params[:id])
+      @users = @user.followers
+      redirect_to(:back)
+    end
 
   private
   def user_params
