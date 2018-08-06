@@ -1,13 +1,13 @@
 class FavoritesController < ApplicationController
   def create
-    @fav = Favorite.create(user_id: current_user.id, tweet_id: params[:tweet_id])
-    @favs = Favorite.where(tweet_id: params[:tweet_id])
-    @tweets = Tweet.all
+    tweet = Tweet.find(params[:tweet_id])
+    tweet.favorites.create(user_id: current_user.id)
+    redirect_to root_path
   end
 
   def destroy
-    fav = Favorite.find_by(user_id: current_user.id, tweet_id: params[:tweet_id])
-    @favs = Favorite.where(tweet_id: params[:tweet_id])
-    @tweets = Tweet.all
+    tweet_fav = Favorite.find_by(tweet_id: params[:tweet_id])
+    tweet_fav.delete
+    redirect_to root_path
   end
 end
