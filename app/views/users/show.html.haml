@@ -7,9 +7,9 @@
       %li.nav-item.col-md-3
         %a.nav-link{:href => "#"} ツイート#{@user.tweets.count}
       %li.nav-item.col-md-3
-        %a.nav-link{:href => "#"} フォロー#{@user.following.count}
+        = link_to "フォロー#{@user.following.count}", "/users/#{@user.id}/following" ,class: 'nav-link'
       %li.nav-item.col-md-3
-        %a.nav-link{:href => "#"} フォロワー#{@user.followers.count}
+        = link_to "フォロワー#{@user.followers.count}", "/users/#{@user.id}/followers" ,class: 'nav-link'
       %li.nav-item.col-md-3
         %a.nav-link{:href => "#"} いいね
     = link_to "プロフィールを編集", "/users/#{current_user.id}/edit" ,class: ' btn btn-outline-secondary col-md-2 offset-md-1'
