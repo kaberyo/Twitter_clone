@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   end
 
   validates :name, presence: true, length: { maximum: 100 }
-  validates :username, presence: true, length: { maximum: 20 }, :uniqueness => { case_sensitive: false }
+  validates :username, presence: true, length: { maximum: 20 }, uniqueness: { case_sensitive: false }
 
   mount_uploader :cover , MediaUploader
   mount_uploader :avator , MediaUploader
