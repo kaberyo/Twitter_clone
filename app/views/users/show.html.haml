@@ -15,7 +15,8 @@
         = link_to "フォロワー#{@user.followers.count}", "/users/#{@user.id}/followers" ,class: 'nav-link'
       %li.nav-item.col-md-3
         %a.nav-link{:href => "#"} いいね
-    = link_to "プロフィールを編集", "/users/#{current_user.id}/edit" ,class: ' btn btn-outline-secondary col-md-2 offset-md-1'
+    - if user_signed_in? && current_user.id == @user.id
+      = link_to "プロフィールを編集", "/users/#{current_user.id}/edit" ,class: ' btn btn-outline-secondary col-md-2 offset-md-1'
     = render "partial/follow_form" ,{user: @user}
   .container-fluid
     .wrapper
@@ -41,7 +42,7 @@
                   %td.far.fa-comment
                   %td.card-text #{@user.about}
         .content-timeline.col-md-4.my-3
-          = render partial: "partial/tweet", collection: current_user.tweets
+          = render partial: "partial/tweet", collection: @user.tweets
         = render "partial/recomendPanel"
 
 
