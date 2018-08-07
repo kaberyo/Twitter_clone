@@ -12,13 +12,10 @@
       = image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvLAgpfLfR8hXo5ZfZHupQ8B1dDt5FqbnxQ-WlDvvSIBq3UUMgg", class: 'rounded-circle circlePosition',alt: "Cinque Terre", width: "70",height: "70"
     .card-body
       .card-body-title #{user.name}
-      .btn-right
-        = render "partial/follow_form" , {user: user}
       %h8.card-text.text-secondary #{user.username}
-      %p.card-text
-        = truncate(user.about, length:40)
+      %p.card-text #{user.about}
       .body-bottom.d-md-inline-flex
         %a.text-muted.card-link{href: "#"} ツイート：#{current_user.tweets.count}
-        %a.text-muted.card-link{href: "#"} フォロー：#{current_user.following.count}
-        %a.text-muted.card-link{href: "#"} フォロワー：#{current_user.followers.count}
+        = link_to "フォロー:#{current_user.following.count}", "/users/#{current_user.id}/following" ,class: 'text-muted card-link'
+        = link_to "フォロワー:#{current_user.followers.count}", "/users/#{current_user.id}/followers" ,class: 'text-muted card-link'
 
