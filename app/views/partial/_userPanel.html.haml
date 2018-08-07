@@ -4,7 +4,7 @@
       .body-top
         %img.rounded-top.card-img-top
           = image_tag current_user.cover.url, class: 'img-fluid' if current_user.cover.present?
-        %img.card-img-top
+        %img.card-img-top.rounded-circle
           = image_tag current_user.avator.url, class: 'img-fluid' if current_user.avator.present?
         %h5.card-title #{current_user.name}
         %h6.card-subtitle.mb-2.text-muted #{current_user.username}

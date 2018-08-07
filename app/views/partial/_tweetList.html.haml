@@ -1,33 +1,8 @@
-- user.tweets.reverse_order.each do |tweet|
-  .wrapper.card.my-2
-    .tweet.card-body.row
-      .tweet__left.col-md-2
-        .tweet__left--user-avatar
-          = image_tag tweet.user.avator.url, class: 'img-fluid' if tweet.user.avator.present?
-      .tweet__right.col-md-10
-        .tweet__right--header
-          %h5.card-title.d-inline
-            = tweet.user.name
-          %h6.card-subtitle.mb-2.text-muted.d-inline
-            = tweet.user.username
-          %h6.card-subtitle.mb-2.text-muted.d-inline
-            = tweet.created_at
-          .btn-group.float-right
-            %button.btn.btn-muted.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", type: "button"}
-            .dropdown-menu
-              %a.dropdown-item{:href => "#"} メニュー1
-              %a.dropdown-item{:href => "#"} メニュー2
-              %a.dropdown-item{:href => "#"} メニュー3
-              .dropdown-divider
-              %a.dropdown-item{:href => "#"} その他リンク
-
-        .tweet__right--main
-          %a.text-muted
-            = tweet.text
-            = image_tag tweet.media.url, class: 'img-fluid' if tweet.media.present?
-        .tweet__right--media
-        .tweet__right--bottom
-          %i.fas.fa-reply
-          %i.fas.fa-retweet
-          %i.fas.fa-heart
-          %i.fas.fa-envelope
+.wrapper.card.my-2
+  .tweet.card-body.row
+    .tweet__left.col-md-2
+      .tweet__left--user-avatar
+    .tweet__right.col-md-10
+      .tweet__right--header
+        %h5.card-title.d-inline
+          = tweetList.name
