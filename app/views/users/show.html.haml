@@ -6,9 +6,9 @@
     %ul.navbar-nav.col-md-4.offset-md-4
       %li.nav-item.col-md-3
         %a.nav-link{:href => "#"} ツイート#{@user.tweets.count}
-      %li.nav-item.col-md-3
+      %li#following.nav-item.col-md-3
         = link_to "フォロー#{@user.following.count}", "/users/#{@user.id}/following" ,class: 'nav-link'
-      %li.nav-item.col-md-3
+      %li#followers.nav-item.col-md-3
         = link_to "フォロワー#{@user.followers.count}", "/users/#{@user.id}/followers" ,class: 'nav-link'
       %li.nav-item.col-md-3
         %a.nav-link{:href => "#"} いいね
