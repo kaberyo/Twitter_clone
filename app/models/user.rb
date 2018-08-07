@@ -28,8 +28,10 @@ class User < ActiveRecord::Base
     following.include?(other_user)
   end
 
+  validates :name, presence: true, length: { maximum: 100 }
+  validates :username, presence: true, length: { maximum: 20 }, uniqueness: { case_sensitive: false }
+
   mount_uploader :cover , MediaUploader
   mount_uploader :avator , MediaUploader
-
 
 end

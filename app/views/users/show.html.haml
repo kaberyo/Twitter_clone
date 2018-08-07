@@ -5,11 +5,11 @@
   %nav.navbar.navbar-expand-lg.bg-light.navbar-light.sticky-top.row
     %ul.navbar-nav.col-md-4.offset-md-4
       %li.nav-item.col-md-3
-        %a.nav-link{:href => "#"} ツイート
+        %a.nav-link{:href => "#"} ツイート#{@user.tweets.count}
       %li.nav-item.col-md-3
-        %a.nav-link{:href => "#"} フォロー
+        %a.nav-link{:href => "#"} フォロー#{@user.following.count}
       %li.nav-item.col-md-3
-        %a.nav-link{:href => "#"} フォロワー
+        %a.nav-link{:href => "#"} フォロワー#{@user.followers.count}
       %li.nav-item.col-md-3
         %a.nav-link{:href => "#"} いいね
     = link_to "プロフィールを編集", "/users/#{current_user.id}/edit" ,class: ' btn btn-outline-secondary col-md-2 offset-md-1'
