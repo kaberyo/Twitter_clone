@@ -1,7 +1,7 @@
-= render "tweets/../partial/navbar"
+= render "partial/navbar"
 .wrapper
   .content.row
-    = render "tweets/../partial/recomendPanel"
+    = render "partial/recomendPanel"
 .row-eq-height
   - @users.each do |user|
     = render "partial/userCard" , {user: user}

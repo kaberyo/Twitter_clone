@@ -1,4 +1,4 @@
-= render "users/../partial/navbar"
+= render "partial/navbar"
 .wrapper
   .container-fluid
     = image_tag @user.cover.url, class: 'img-fluid header-pic' if @user.cover.present?
@@ -7,9 +7,9 @@
       %li.nav-item.col-md-3
         %a.nav-link{:href => "#"} ツイート#{@user.tweets.count}
       %li.nav-item.col-md-3
-        %a.nav-link{:href => "#"} フォロー#{@user.following.count}
+        = link_to "フォロー#{@user.following.count}", "/users/#{@user.id}/following" ,class: 'nav-link'
       %li.nav-item.col-md-3
-        %a.nav-link{:href => "#"} フォロワー#{@user.followers.count}
+        = link_to "フォロワー#{@user.followers.count}", "/users/#{@user.id}/followers" ,class: 'nav-link'
       %li.nav-item.col-md-3
         %a.nav-link{:href => "#"} いいね
     = link_to "プロフィールを編集", "/users/#{current_user.id}/edit" ,class: ' btn btn-outline-secondary col-md-2 offset-md-1'
@@ -34,6 +34,6 @@
               = @user.website
 
         .content-timeline.col-md-4.my-3
-          = render "tweets/../partial/tweetList" ,{user: current_user}
-        = render "tweets/../partial/recomendPanel"
+          = render partial: "partial/tweet", collection: current_user.tweets
+        = render "partial/recomendPanel"
 
