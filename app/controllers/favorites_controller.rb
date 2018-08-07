@@ -6,8 +6,7 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    tweet_fav = Favorite.find_by(tweet_id: params[:tweet_id])
-    tweet_fav.delete
+    Favorite.find_by(user_id: params[:id], tweet_id: params[:tweet_id]).delete
     redirect_to root_path
   end
 end

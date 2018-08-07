@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
   def index
-    @tweet = Tweet.all
+    @tweets = Tweet.where(user_id: current_user.following.ids.push(current_user.id)).reverse_order
     @user = User.all
   end
 
