@@ -6,9 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :tweets
   has_many :favorites
-  # has_many :tweets, through: :favorites
   has_many :retweets
-  # has_many :tweets, through: :retweets
 
   has_many :active_relationships,class_name:  "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "following_id", dependent: :destroy
@@ -30,8 +28,10 @@ class User < ActiveRecord::Base
     following.include?(other_user)
   end
 
+  validates :name, presence: true, length: { maximum: 100 }
+  validates :username, presence: true, length: { maximum: 20 }, uniqueness: { case_sensitive: false }
+
   mount_uploader :cover , MediaUploader
   mount_uploader :avator , MediaUploader
-
 
 end
