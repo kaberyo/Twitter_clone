@@ -5,5 +5,6 @@
     .content__timeline.col-md-4
       .my-4.bg-light
         = render "partial/tweetForm"
-      = render partial: "partial/tweet", collection: @tweets
+      #tweet_body
+        = render partial: "partial/tweet", collection: @tweets
     = render "partial/recomendPanel"
