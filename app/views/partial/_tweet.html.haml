@@ -2,15 +2,19 @@
   .tweet.card-body.row
     .tweet__left.col-md-2
       .tweet__left--user-avatar
+        - if tweet.user.avator.present?
+          = image_tag tweet.user.avator.url, class: 'rounded-circle circlePosition',alt: "Cinque Terre", width: "50",height: "50"
+        - else
+          = image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvLAgpfLfR8hXo5ZfZHupQ8B1dDt5FqbnxQ-WlDvvSIBq3UUMgg", class: 'rounded-circle circlePosition',alt: "Cinque Terre", width: "50",height: "50"
         = image_tag tweet.user.avator.url, class: 'img-fluid' if tweet.user.avator.present?
     .tweet__right.col-md-10
       .tweet__right--header
-        %h5.card-title.d-inline
+        %strong
           = tweet.user.name
         %h6.card-subtitle.mb-2.text-muted.d-inline
           = tweet.user.username
         %h6.card-subtitle.mb-2.text-muted.d-inline
-          = tweet.created_at
+          = tweet.created_at.to_s(:human)
         .btn-group.float-right
           %button.btn.btn-muted.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", type: "button"}
           .dropdown-menu
@@ -19,36 +23,24 @@
             %a.dropdown-item{:href => "#"} メニュー3
             .dropdown-divider
             %a.dropdown-item{:href => "#"} その他リンク
-
       .tweet__right--main
-        %a.text-muted
+        %a.card-title
           = tweet.text
       .tweet__right--media
         = image_tag tweet.media.url, class: 'img-fluid' if tweet.media.present?
       .tweet__right--bottom
-        .tweet__right--reply.d-inline
-          %label.reply
-            %i.fas.fa-reply
-            / = link_to "reply", new_tweet_path(parent_id: tweet.id)
-            %button.btn.btn-primary.displaynone{"data-target" => "#exampleModalCenter", "data-toggle" => "modal", :type => "button"}
-            #exampleModalCenter.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalCenterTitle", :role => "dialog", :tabindex => "-1"}
-              .modal-dialog.modal-dialog-centered{:role => "document"}
-                .modal-content
-                  .modal-header
-                    %h5#exampleModalCenterTitle.modal-title
-                      = "返信先: #{tweet.user.name} さん"
-                    %button.close{"aria-label" => "閉じる", "data-dismiss" => "modal", :type => "button"}
-                      %span{"aria-hidden" => "true"} ×
-                  .modal-body
-                    = render "partial/replyForm", {tweet: tweet}
-
-        .tweet__right--favorite.d-inline
-          - if tweet.fav?(current_user.id, tweet.id)
-            %label.unfav
-              %i.fas.fa-star
-              = button_to 'いいねを消す', tweet_favorite_path(id: current_user.id, tweet_id: tweet.id), method: :delete, class: 'displaynone'
-          - else
-            %label.fav
-              %i.far.fa-star
-              = button_to 'いいね', tweet_favorites_path(user_id: current_user.id, tweet_id: tweet.id), class: 'displaynone'
-          = tweet.favorites.count
+        %a.text-muted
+          .tweet__right--reply.d-inline
+            %label.reply
+              = link_to new_tweet_path(parent_id: tweet) do
+                %i.fas.fa-reply
+          .tweet__right--favorite.d-inline
+            - if tweet.fav?(current_user.id, tweet.id)
+              %label.unfav
+                %i.fas.fa-star
+                = button_to 'いいねを消す', tweet_favorite_path(id: current_user.id, tweet_id: tweet.id), method: :delete, class: 'displaynone'
+            - else
+              %label.fav
+                %i.far.fa-star
+                = button_to 'いいね', tweet_favorites_path(user_id: current_user.id, tweet_id: tweet.id), class: 'displaynone'
+            = tweet.favorites.count

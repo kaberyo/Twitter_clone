@@ -1,6 +1,6 @@
 - @tweet = Tweet.new
 = form_for @tweet do |f|
-  = f.text_area :text, class: 'col-md-10 offset-md-1', placeholder: 'いまどうしてる？'
+  = f.text_area :text, class: 'col-md-10 offset-md-1', placeholder: 'いまどうしてる？', value: "@#{Tweet.find(@parent_id).user.username} "
   = f.label :media, class: 'tweet-media col-md-1' do
     %i.fas.fa-camera-retro
     = f.file_field :media, class: 'displaynone'
