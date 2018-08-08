@@ -9,7 +9,7 @@
         / = image_tag tweet.user.avator.url, class: 'img-fluid' if tweet.user.avator.present?
     .tweet__right.col-md-10
       .tweet__right--header
-        %b
+        %strong
           = tweet.user.name
         %h6.card-subtitle.mb-2.text-muted.d-inline
           = tweet.user.username
