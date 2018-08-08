@@ -1,1 +1,5 @@
-$("#follow_form").html("<%= j(render 'partial/follow', {user: @user})%>");
+$(function(){
+  $('.follow_form').on("click",function(){
+    $(this).html("<%= j(render 'partial/follow', {user: @user})%>");
+    });
+});
