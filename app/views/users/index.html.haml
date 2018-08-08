@@ -1,7 +1,10 @@
-= render "tweets/../partial/navbar"
+= render "partial/navbar"
+= render "partial/searchBar",{keyword: params[:keyword]}
 .wrapper
   .content.row
-    = render "tweets/../partial/recomendPanel"
-.row-eq-height
-  - @users.each do |user|
-    = render "partial/userCard" , {user: user}
+    .content-left.col-md-3.offset-md-1
+      = render "partial/recomendPanel"
+    .content__timeline.col-md-8
+      .row-eq-height.my-4
+        - @users.each do |user|
+          = render "partial/userCard" , {user: user}

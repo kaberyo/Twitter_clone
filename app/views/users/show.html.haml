@@ -43,7 +43,8 @@
                   %td.card-text #{@user.about}
         .content-timeline.col-md-4.my-3
           = render partial: "partial/tweet", collection: @user.tweets
-        = render "partial/recomendPanel"
+        .content-rihgt.col-md-3
+          = render "partial/recomendPanel"
 
 
 

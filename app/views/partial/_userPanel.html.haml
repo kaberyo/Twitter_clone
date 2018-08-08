@@ -18,4 +18,3 @@
         %a.text-muted.card-link{href: "#"} ツイート：#{current_user.tweets.count}
         = link_to "フォロー:#{current_user.following.count}", "/users/#{current_user.id}/following" ,class: 'text-muted card-link'
         = link_to "フォロワー:#{current_user.followers.count}", "/users/#{current_user.id}/followers" ,class: 'text-muted card-link'
-
