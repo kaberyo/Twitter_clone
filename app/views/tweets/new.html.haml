@@ -1,1 +1,8 @@
-= render 'tweets/../partial/tweetForm'
+- @tweet = Tweet.new
+= form_for @tweet do |f|
+  = f.text_area :text, class: 'col-md-10 offset-md-1', placeholder: 'いまどうしてる？'
+  = f.label :media, class: 'tweet-media col-md-1' do
+    %i.fas.fa-camera-retro
+    = f.file_field :media, class: 'displaynone'
+  = f.hidden_field :parent_id, value: @parent_id
+  = f.submit 'Tweet', class: 'col-md-2 offset-md-9 my-1 btn btn-info'

@@ -5,6 +5,7 @@ class TweetsController < ApplicationController
   end
 
   def new
+    @parent_id = params[:parent_id]
   end
 
   def create
@@ -14,6 +15,6 @@ class TweetsController < ApplicationController
 
   private
   def tweet_params
-    params.require(:tweet).permit(:text, :media).merge(user_id: current_user.id)
+    params.require(:tweet).permit(:text, :media, :parent_id).merge(user_id: current_user.id)
   end
 end

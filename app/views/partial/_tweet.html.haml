@@ -23,15 +23,32 @@
       .tweet__right--main
         %a.text-muted
           = tweet.text
-          = image_tag tweet.media.url, class: 'img-fluid' if tweet.media.present?
       .tweet__right--media
+        = image_tag tweet.media.url, class: 'img-fluid' if tweet.media.present?
       .tweet__right--bottom
-        - if tweet.fav?(current_user.id, tweet.id)
-          %label.unfav
-            %i.fas.fa-star
-            = button_to 'いいねを消す', tweet_favorite_path(id: current_user.id, tweet_id: tweet.id), method: :delete, class: 'displaynone'
-        - else
-          %label.fav
-            %i.far.fa-star
-            = button_to 'いいね', tweet_favorites_path(user_id: current_user.id, tweet_id: tweet.id), class: 'displaynone'
-        = tweet.favorites.count
+        .tweet__right--reply.d-inline
+          %label.reply
+            %i.fas.fa-reply
+            / = link_to "reply", new_tweet_path(parent_id: tweet.id)
+            %button.btn.btn-primary.displaynone{"data-target" => "#exampleModalCenter", "data-toggle" => "modal", :type => "button"}
+            #exampleModalCenter.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalCenterTitle", :role => "dialog", :tabindex => "-1"}
+              .modal-dialog.modal-dialog-centered{:role => "document"}
+                .modal-content
+                  .modal-header
+                    %h5#exampleModalCenterTitle.modal-title
+                      = "返信先: #{tweet.user.name} さん"
+                    %button.close{"aria-label" => "閉じる", "data-dismiss" => "modal", :type => "button"}
+                      %span{"aria-hidden" => "true"} ×
+                  .modal-body
+                    = render "partial/replyForm", {tweet: tweet}
+
+        .tweet__right--favorite.d-inline
+          - if tweet.fav?(current_user.id, tweet.id)
+            %label.unfav
+              %i.fas.fa-star
+              = button_to 'いいねを消す', tweet_favorite_path(id: current_user.id, tweet_id: tweet.id), method: :delete, class: 'displaynone'
+          - else
+            %label.fav
+              %i.far.fa-star
+              = button_to 'いいね', tweet_favorites_path(user_id: current_user.id, tweet_id: tweet.id), class: 'displaynone'
+          = tweet.favorites.count
