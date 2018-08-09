@@ -15,8 +15,15 @@ class UsersController < ApplicationController
   end
 
   def show
+    medias = []
     @user = User.find(params[:id])
     @users = current_user.following & @user.followers
+    @tweets = @user.tweets
+    @tweets.each do |tweet|
+      media = tweet.media.url
+      medias << media
+    end
+    @medias = medias.compact.reject(&:empty?)
   end
 
   def favorites

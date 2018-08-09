@@ -52,7 +52,16 @@
                     = image_tag user.avator.url, class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
                   - else
                     = image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvLAgpfLfR8hXo5ZfZHupQ8B1dDt5FqbnxQ-WlDvvSIBq3UUMgg", class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
+              - if @medias.present?
+                %table
+                  %tr
+                    %td.far.fa-images
+                    %td.card-text 画像/動画
+                - @medias.each do |media|
+                  = image_tag media, class: 'image_trimming', width: "70",height: "70"
+
         .content-timeline.col-md-4.my-3
           = render partial: "partial/tweet", collection: @user.tweets
         .content-rihgt.col-md-3
           = render "partial/recomendPanel"
+
