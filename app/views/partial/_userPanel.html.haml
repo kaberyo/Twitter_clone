@@ -2,14 +2,14 @@
   .card.my-4
     - if user.cover.present?
       = link_to "/users/#{user.id}" ,class: 'thumbnail' do
-        = image_tag user.cover.url, class: 'card-img-top',alt: "Card image cap", width: "256", height: "100"
+        = image_tag user.cover.url, class: 'card-img-top image_trimming',alt: "Card image cap", width: "256", height: "100"
     - else
       = link_to "/users/#{user.id}" ,class: 'thumbnail' do
-        = image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvLAgpfLfR8hXo5ZfZHupQ8B1dDt5FqbnxQ-WlDvvSIBq3UUMgg", class: 'card-img-top',alt: "Card image cap", width: "256", height: "100"
+        = image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvLAgpfLfR8hXo5ZfZHupQ8B1dDt5FqbnxQ-WlDvvSIBq3UUMgg", class: 'card-img-top image_trimming',alt: "Card image cap", width: "256", height: "100"
     - if user.avator.present?
-      = image_tag user.avator.url, class: 'rounded-circle circlePosition',alt: "Cinque Terre", width: "70",height: "70"
+      = image_tag user.avator.url, class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "70",height: "70"
     - else
-      = image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvLAgpfLfR8hXo5ZfZHupQ8B1dDt5FqbnxQ-WlDvvSIBq3UUMgg", class: 'rounded-circle circlePosition',alt: "Cinque Terre", width: "70",height: "70"
+      = image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvLAgpfLfR8hXo5ZfZHupQ8B1dDt5FqbnxQ-WlDvvSIBq3UUMgg", class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "70",height: "70"
     .card-body
       .card-body-title #{user.name}
       %h8.card-text.text-secondary #{user.username}
@@ -18,4 +18,3 @@
         %a.text-muted.card-link{href: "#"} ツイート：#{current_user.tweets.count}
         = link_to "フォロー:#{current_user.following.count}", "/users/#{current_user.id}/following" ,class: 'text-muted card-link'
         = link_to "フォロワー:#{current_user.followers.count}", "/users/#{current_user.id}/followers" ,class: 'text-muted card-link'
-
