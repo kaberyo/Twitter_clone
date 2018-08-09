@@ -3,7 +3,6 @@
   .content.row
     = render "partial/userPanel", {user: current_user}
     .content__timeline.col-md-4.my-4
-      - @tweet = Tweet.new
       = form_for @tweet do |f|
         = f.text_area :text, class: 'col-md-10 offset-md-1', placeholder: 'いまどうしてる？', value: "@#{Tweet.find(@parent_id).user.username} "
         = f.label :media, class: 'tweet-media col-md-1' do

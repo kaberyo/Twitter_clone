@@ -5,6 +5,7 @@ class TweetsController < ApplicationController
   end
 
   def new
+    @tweet = Tweet.new
     @parent_id = params[:parent_id]
   end
 
