@@ -27,7 +27,7 @@
             %a.dropdown-item{:href => "#"} その他リンク
       .tweet__right--main
         %a.card-title
-          = tweet.text
+          = render_with_hashtags(tweet.text)
       .tweet__right--media
         = image_tag tweet.media.url, class: 'img-fluid' if tweet.media.present?
       .tweet__right--bottom

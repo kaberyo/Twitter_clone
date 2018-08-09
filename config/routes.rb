@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root "tweets#index"
+  get '/post/hashtag/:name', to: "tweets#hashtags"
   resources :tweets, only: [:index, :new, :create] do
     resources :favorites , only: [:create, :destroy]
     collection do
@@ -13,4 +14,5 @@ Rails.application.routes.draw do
     end
   end
   resources :relationships, only: [:create, :destroy]
+
 end

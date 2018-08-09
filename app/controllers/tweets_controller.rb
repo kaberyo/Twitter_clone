@@ -18,6 +18,12 @@ class TweetsController < ApplicationController
     @tweets = Tweet.where('text LIKE(?)',"%#{params[:keyword]}%")
   end
 
+  def hashtags
+    @tag = Tag.find_by(name: params[:name])
+    @tweets = @tag.tweets.order("created_at DESC")
+  end
+
+
   private
   def tweet_params
     params.require(:tweet).permit(:text, :media, :parent_id).merge(user_id: current_user.id)
