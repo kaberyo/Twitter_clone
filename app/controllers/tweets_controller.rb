@@ -4,6 +4,10 @@ class TweetsController < ApplicationController
     @user = User.all
   end
 
+  def show
+    @tweet = Tweet.find(params[:id])
+  end
+
   def new
     @tweet = Tweet.new
     @parent_id = params[:parent_id]

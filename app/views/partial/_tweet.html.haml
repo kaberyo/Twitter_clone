@@ -14,7 +14,7 @@
         %h6.card-subtitle.mb-2.text-muted.d-inline
           = "@#{tweet.user.username}"
         %h6.card-subtitle.mb-2.text-muted.d-inline
-          = tweet.created_at.to_s(:human)
+          = link_to "#{tweet.created_at.to_s(:human)}", tweet_path(id: tweet.id)
         .btn-group.float-right
           %button.btn.btn-muted.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", type: "button"}
           .dropdown-menu
