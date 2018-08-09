@@ -12,7 +12,7 @@
         %strong
           = tweet.user.name
         %h6.card-subtitle.mb-2.text-muted.d-inline
-          = tweet.user.username
+          = "@#{tweet.user.username}"
         %h6.card-subtitle.mb-2.text-muted.d-inline
           = tweet.created_at.to_s(:human)
         .btn-group.float-right
@@ -26,16 +26,21 @@
       .tweet__right--main
         %a.card-title
           = tweet.text
-          = image_tag tweet.media.url, class: 'img-fluid' if tweet.media.present?
       .tweet__right--media
+        = image_tag tweet.media.url, class: 'img-fluid' if tweet.media.present?
       .tweet__right--bottom
         %a.text-muted
-          - if tweet.fav?(current_user.id, tweet.id)
-            %label.unfav
-              %i.fas.fa-star
-              = button_to 'いいねを消す', tweet_favorite_path(id: current_user.id, tweet_id: tweet.id), method: :delete, class: 'displaynone'
-          - else
-            %label.fav
-              %i.far.fa-star
-              = button_to 'いいね', tweet_favorites_path(user_id: current_user.id, tweet_id: tweet.id), class: 'displaynone'
-          = tweet.favorites.count
+          .tweet__right--reply.d-inline
+            %label.reply
+              = link_to new_tweet_path(parent_id: tweet) do
+                %i.fas.fa-reply
+          .tweet__right--favorite.d-inline
+            - if tweet.fav?(current_user.id, tweet.id)
+              %label.unfav
+                %i.fas.fa-star
+                = button_to 'いいねを消す', tweet_favorite_path(id: current_user.id, tweet_id: tweet.id), method: :delete, class: 'displaynone'
+            - else
+              %label.fav
+                %i.far.fa-star
+                = button_to 'いいね', tweet_favorites_path(user_id: current_user.id, tweet_id: tweet.id), class: 'displaynone'
+            = tweet.favorites.count

@@ -13,6 +13,6 @@
     .card-body-title #{user.name}
     .btn-right
       = render "partial/follow_form" , {user: user}
-    %h8.card-text.text-secondary #{user.username}
+    %h8.card-text.text-secondary @#{user.username}
     %p.card-text
       = truncate(user.about, length:40)
