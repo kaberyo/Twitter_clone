@@ -1,16 +1,19 @@
 .wrapper.card.my-2
   .tweet.card-body.row
     .tweet__left.col-md-2
-      .tweet__left--user-avatar
-        - if tweet.user.avator.present?
-          = image_tag tweet.user.avator.url, class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
-        - else
-          = image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvLAgpfLfR8hXo5ZfZHupQ8B1dDt5FqbnxQ-WlDvvSIBq3UUMgg", class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
+      = link_to "/users/#{tweet.user.id}" do
+        .tweet__left--user-avatar
+          - if tweet.user.avator.present?
+            = image_tag tweet.user.avator.url, class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
+          - else
+            = image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvLAgpfLfR8hXo5ZfZHupQ8B1dDt5FqbnxQ-WlDvvSIBq3UUMgg", class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
 
     .tweet__right.col-md-10
       .tweet__right--header
         %strong
-          = tweet.user.name
+        = link_to"/users/#{tweet.user.id}" do
+          .linkcolorblack
+            = tweet.user.name
         %h6.card-subtitle.mb-2.text-muted.d-inline
           = "@#{tweet.user.username}"
         %h6.card-subtitle.mb-2.text-muted.d-inline
