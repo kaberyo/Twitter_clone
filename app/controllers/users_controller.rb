@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   def favorites
     tweets = []
     @user = User.find(params[:id])
-    @favorites = Favorite.where(user_id: current_user.id)
+    @favorites = Favorite.where(user_id: @user.id)
     @favorites.each do |favorite|
       id = favorite.tweet_id
       tweet = Tweet.find(id)
