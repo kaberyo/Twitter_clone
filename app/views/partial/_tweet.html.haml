@@ -3,9 +3,9 @@
     .tweet__left.col-md-2
       .tweet__left--user-avatar
         - if tweet.user.avator.present?
-          = image_tag tweet.user.avator.url, class: 'rounded-circle circlePosition',alt: "Cinque Terre", width: "50",height: "50"
+          = image_tag tweet.user.avator.url, class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
         - else
-          = image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvLAgpfLfR8hXo5ZfZHupQ8B1dDt5FqbnxQ-WlDvvSIBq3UUMgg", class: 'rounded-circle circlePosition',alt: "Cinque Terre", width: "50",height: "50"
+          = image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvLAgpfLfR8hXo5ZfZHupQ8B1dDt5FqbnxQ-WlDvvSIBq3UUMgg", class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
 
     .tweet__right.col-md-10
       .tweet__right--header
