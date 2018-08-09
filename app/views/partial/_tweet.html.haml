@@ -12,7 +12,7 @@
         %strong
           = tweet.user.name
         %h6.card-subtitle.mb-2.text-muted.d-inline
-          = tweet.user.username
+          = "@#{tweet.user.username}"
         %h6.card-subtitle.mb-2.text-muted.d-inline
           = tweet.created_at.to_s(:human)
         .btn-group.float-right
