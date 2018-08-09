@@ -2,9 +2,9 @@
 .wrapper
   .container-fluid
     - if @user.cover.present?
-      = image_tag @user.cover.url, class: 'img-fluid header-pic'
+      = image_tag @user.cover.url, class: 'img-fluid header-pic image_trimming'
     - else
-      = image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvLAgpfLfR8hXo5ZfZHupQ8B1dDt5FqbnxQ-WlDvvSIBq3UUMgg", class: 'img-fluid header-pic'
+      = image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvLAgpfLfR8hXo5ZfZHupQ8B1dDt5FqbnxQ-WlDvvSIBq3UUMgg", class: 'img-fluid header-pic image_trimming'
   %nav.navbar.navbar-expand-lg.bg-light.navbar-light.sticky-top.row
     %ul.navbar-nav.col-md-4.offset-md-4
       %li.nav-item.col-md-3
@@ -25,9 +25,9 @@
         .content-left.col-md-3.offset-md-1
           .my-4
             - if @user.avator.present?
-              = image_tag @user.avator.url, class: 'rounded-circle circlePosition',alt: "Cinque Terre", width: "250",height: "250"
+              = image_tag @user.avator.url, class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "250",height: "250"
             - else
-              = image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvLAgpfLfR8hXo5ZfZHupQ8B1dDt5FqbnxQ-WlDvvSIBq3UUMgg", class: 'rounded-circle circlePosition',alt: "Cinque Terre", width: "250",height: "250"
+              = image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvLAgpfLfR8hXo5ZfZHupQ8B1dDt5FqbnxQ-WlDvvSIBq3UUMgg", class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "250",height: "250"
             .card-body
               .card-body-title #{@user.name}
               %table
@@ -49,10 +49,19 @@
               - @users.each do |user|
                 = link_to (user_path(user)) do
                   - if user.avator.present?
-                    = image_tag user.avator.url, class: 'rounded-circle circlePosition',alt: "Cinque Terre", width: "50",height: "50"
+                    = image_tag user.avator.url, class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
                   - else
-                    = image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvLAgpfLfR8hXo5ZfZHupQ8B1dDt5FqbnxQ-WlDvvSIBq3UUMgg", class: 'rounded-circle circlePosition',alt: "Cinque Terre", width: "50",height: "50"
+                    = image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvLAgpfLfR8hXo5ZfZHupQ8B1dDt5FqbnxQ-WlDvvSIBq3UUMgg", class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
+              - if @medias.present?
+                %table
+                  %tr
+                    %td.far.fa-images
+                    %td.card-text 画像/動画
+                - @medias.each do |media|
+                  = image_tag media, class: 'image_trimming', width: "70",height: "70"
+
         .content-timeline.col-md-4.my-3
           = render partial: "partial/tweet", collection: @user.tweets
-        .content-rihgt.col-md-3
+        .content-timeline.col-md-3.my-3
           = render "partial/recomendPanel"
+
