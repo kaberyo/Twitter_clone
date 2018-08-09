@@ -42,10 +42,17 @@
                 %tr
                   %td.far.fa-comment
                   %td.card-text #{@user.about}
+                - if @users.present?
+                  %tr
+                    %td.fas.fa-users
+                    %td.card-text{:href => "#"} #{@users.count}人の知り合いのフォロワー
+              - @users.each do |user|
+                = link_to (user_path(user)) do
+                  - if user.avator.present?
+                    = image_tag user.avator.url, class: 'rounded-circle circlePosition',alt: "Cinque Terre", width: "50",height: "50"
+                  - else
+                    = image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvLAgpfLfR8hXo5ZfZHupQ8B1dDt5FqbnxQ-WlDvvSIBq3UUMgg", class: 'rounded-circle circlePosition',alt: "Cinque Terre", width: "50",height: "50"
         .content-timeline.col-md-4.my-3
           = render partial: "partial/tweet", collection: @user.tweets
         .content-rihgt.col-md-3
           = render "partial/recomendPanel"
-
-
-
