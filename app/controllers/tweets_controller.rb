@@ -12,6 +12,10 @@ class TweetsController < ApplicationController
     redirect_to root_path
   end
 
+  def search
+    @tweets = Tweet.where('text LIKE(?)',"%#{params[:keyword]}%")
+  end
+
   private
   def tweet_params
     params.require(:tweet).permit(:text, :media).merge(user_id: current_user.id)

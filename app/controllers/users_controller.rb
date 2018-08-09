@@ -19,6 +19,18 @@ class UsersController < ApplicationController
     @users = current_user.following & @user.followers
   end
 
+  def favorites
+    tweets = []
+    @user = User.find(params[:id])
+    @favorites = Favorite.where(user_id: current_user.id)
+    @favorites.each do |favorite|
+      id = favorite.tweet_id
+      tweet = Tweet.find(id)
+      tweets << tweet
+    end
+    @tweets = tweets
+  end
+
   def following
     @user  = User.find(params[:id])
     @users = @user.following

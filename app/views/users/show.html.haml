@@ -54,4 +54,5 @@
                     = image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvLAgpfLfR8hXo5ZfZHupQ8B1dDt5FqbnxQ-WlDvvSIBq3UUMgg", class: 'rounded-circle circlePosition',alt: "Cinque Terre", width: "50",height: "50"
         .content-timeline.col-md-4.my-3
           = render partial: "partial/tweet", collection: @user.tweets
-        = render "partial/recomendPanel"
+        .content-rihgt.col-md-3
+          = render "partial/recomendPanel"
