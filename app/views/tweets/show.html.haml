@@ -4,8 +4,6 @@
     .content-left.col-md-3.offset-md-1
       = render "partial/userPanel", {user: current_user}
     #tweet_body.col-md-4.offset-col-4.my-3
-      - if @tweet.parent_id?
-        = render partial: "partial/tweet", collection: @tweets
       = render "partial/tweet", {tweet: @tweet}
       = form_for Tweet.new do |f|
         = f.text_area :text, class: 'col-md-10 offset-md-1', placeholder: '返信をツイート'
