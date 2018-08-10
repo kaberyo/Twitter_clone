@@ -18,13 +18,8 @@
         %h6.card-subtitle.mb-2.text-muted.d-inline
           = link_to "#{tweet.created_at.to_s(:human)}", tweet_path(id: tweet.id)
         .btn-group.float-right
-          %button.btn.btn-muted.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", type: "button"}
-          .dropdown-menu
-            %a.dropdown-item{:href => "#"} メニュー1
-            %a.dropdown-item{:href => "#"} メニュー2
-            %a.dropdown-item{:href => "#"} メニュー3
-            .dropdown-divider
-            %a.dropdown-item{:href => "#"} その他リンク
+          - if tweet.user_id == current_user.id
+            = link_to "でりーと", "/tweets/#{tweet.id}", method:'delete'
       .tweet__right--main
         - if tweet.parent_id?
           .tweet__right--reply
