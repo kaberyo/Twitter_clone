@@ -1,0 +1,64 @@
+= render "partial/navbar"
+.wrapper
+  .content.row
+    = render "partial/userPanel", {user: current_user}
+    #tweet_body.col-md-4.offset-col-4.my-3
+      .card.my-2
+        .tweet.card-body.row
+          .tweet__left.col-md-2
+            = link_to "/users/#{@tweets.user_id}" do
+              .tweet__left--user-avatar
+                - if @tweets.user.avator.present?
+                  = image_tag @tweets.user.avator.url, class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
+                - else
+                  = image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvLAgpfLfR8hXo5ZfZHupQ8B1dDt5FqbnxQ-WlDvvSIBq3UUMgg", class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
+          .tweet__right.col-md-10
+            .tweet__right--header
+              %strong
+                = link_to"/users/#{@tweets.user.id}" do
+                  .linkcolorblack.d-inline
+                    = @tweets.user.name
+              %h6.card-subtitle.mb-2.text-muted.d-inline
+                = "@#{@tweets.user.username}"
+              %h6.card-subtitle.mb-2.text-muted.d-inline
+                = link_to "#{@tweets.created_at.to_s(:human)}", tweet_path(id: @tweets.id)
+              .btn-group.float-right
+                %button.btn.btn-muted.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", type: "button"}
+                .dropdown-menu
+                  %a.dropdown-item{:href => "#"} メニュー1
+                  %a.dropdown-item{:href => "#"} メニュー2
+                  %a.dropdown-item{:href => "#"} メニュー3
+                  .dropdown-divider
+                  %a.dropdown-item{:href => "#"} その他リンク
+            .tweet__right--main
+              %a.card-title
+                = @tweets.text
+            .tweet__right--media
+              = image_tag @tweets.media.url, class: 'img-fluid' if @tweets.media.present?
+            .tweet__right--bottom
+              %a.text-muted
+                .tweet__right--reply.d-inline
+                  %label.reply
+                    / = link_to new_tweet_path(parent_id: tweet) do
+                    = link_to tweet_path(id: @tweets.id) do
+                      %i.fas.fa-reply
+                .tweet__right--favorite.d-inline
+                  - if @tweets.fav?(current_user.id, @tweets.id)
+                    %label.unfav
+                      %i.fas.fa-star
+                      = button_to 'いいねを消す', tweet_favorite_path(id: current_user.id, tweet_id: @tweets.id), method: :delete, class: 'displaynone'
+                  - else
+                    %label.fav
+                      %i.far.fa-star
+                      = button_to 'いいね', tweet_favorites_path(user_id: current_user.id, tweet_id: @tweets.id), class: 'displaynone'
+                  = @tweets.favorites.count
+      = form_for @tweet do |f|
+        = f.text_area :text, class: 'col-md-10 offset-md-1', placeholder: '返信をツイート'
+        = f.label :media, class: 'tweet-media col-md-1' do
+          %i.fas.fa-camera-retro
+          = f.file_field :media, class: 'displaynone'
+        = f.hidden_field :parent_id, value: @tweets.id
+        = f.submit 'Tweet', class: 'col-md-2 offset-md-9 my-1 btn btn-info'
+
+    .content-rihgt.col-md-3.offset-col-8
+      = render "partial/recomendPanel"

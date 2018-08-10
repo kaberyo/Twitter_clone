@@ -2,14 +2,15 @@ class TweetsController < ApplicationController
   def index
     @tweets = Tweet.where(user_id: current_user.following.ids.push(current_user.id)).reverse_order
     @user = User.all
+    # binding.pry
   end
 
   def show
-    @tweet = Tweet.find(params[:id])
+    @tweets = Tweet.find(params[:id])
+    # binding.pry
   end
 
   def new
-    @tweet = Tweet.new
     @parent_id = params[:parent_id]
   end
 
