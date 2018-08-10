@@ -41,7 +41,7 @@
                 %tr
                   %td.far.fa-comment
                   %td.card-text #{@user.about}
-          = render "partial/recomendPanel"
+          = render partial: "partial/recommend",collection: @recommends
         .content__timeline.col-md-8
           .row-eq-height.my-4
             - @users.each do |user|
