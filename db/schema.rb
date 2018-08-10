@@ -45,8 +45,9 @@ ActiveRecord::Schema.define(version: 20180809172046) do
 
   create_table "tags", force: :cascade do |t|
     t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "tags_count", limit: 255, default: "0", null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "tweets", force: :cascade do |t|
