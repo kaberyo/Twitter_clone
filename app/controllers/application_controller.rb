@@ -5,6 +5,16 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def user_followers_count
+    users = User.all
+    users.each do |user|
+      user.followers_count = user.followers.count
+      user.save
+    end
+    candidates = User.where.not(id:current_user.id).where.not(id:current_user.following.ids)
+    @recommends = candidates.order("followers_count DESC").limit(2)
+  end
+
     protected
 
   def configure_permitted_parameters

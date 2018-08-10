@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+   before_action :user_followers_count,only: [:index, :show, :favorites,:followers,:followings]
   before_action :set_tweet
 
   def index
@@ -11,7 +12,7 @@ class UsersController < ApplicationController
 
   def update
     if current_user.update(user_params)
-      redirect_to user_path
+      redirect_to userpath
     else
       render :edit
     end
