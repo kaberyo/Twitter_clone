@@ -14,4 +14,13 @@ class ApplicationController < ActionController::Base
   def after_sign_out_path_for(resource)
     new_user_session_path
   end
+
+  def tagscount
+    tags = Tag.all
+    tags.each do |tag|
+      tag.tags_count = tag.tweets.count
+      tag.save
+    end
+    @trend = Tag.order("tags_count DESC")
+  end
 end
