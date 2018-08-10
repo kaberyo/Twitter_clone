@@ -1,13 +1,12 @@
 class TweetsController < ApplicationController
   def index
+    @tweet = Tweet.new
     @tweets = Tweet.where(user_id: current_user.following.ids.push(current_user.id)).reverse_order
     @user = User.all
-    # binding.pry
   end
 
   def show
-    @tweets = Tweet.where(id: params[:id])
-    # binding.pry
+    @tweet = Tweet.find(params[:id])
   end
 
   def new
@@ -20,6 +19,7 @@ class TweetsController < ApplicationController
   end
 
   def search
+    @tweet = Tweet.new
     @tweets = Tweet.where('text LIKE(?)',"%#{params[:keyword]}%")
   end
 
