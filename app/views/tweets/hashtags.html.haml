@@ -3,8 +3,9 @@
 .wrapper
   .content.row
     .content-left.col-md-3.offset-md-1
-      = render partial: "partial/recommend",collection: @recommends
+      = render "partial/recomendPanel"
     .content__timeline.col-md-4
       #tweet_body
         - @tweets.each do |tweet|
           = render "partial/tweet", {tweet: tweet}
+

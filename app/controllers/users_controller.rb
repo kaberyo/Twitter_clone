@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
    before_action :user_followers_count,only: [:index, :show, :favorites,:followers,:followings]
+  before_action :set_tweet
 
   def index
      @users = User.where('name LIKE(?)', "%#{params[:keyword]}%").where.not(name: current_user.name)
+     @tag = ""
   end
 
   def edit
@@ -53,5 +55,9 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :username ,:about, :location, :website, :avator, :cover)
+  end
+
+  def set_tweet
+    @tweet = Tweet.new
   end
 end
