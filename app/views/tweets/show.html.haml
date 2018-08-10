@@ -3,6 +3,12 @@
   .content.row
     = render "partial/userPanel", {user: current_user}
     #tweet_body.col-md-4.offset-col-4.my-3
+      / - binding.pry
+      - if @tweet.parent_id?
+        - @tweets = Tweet.where(id: @tweet.parent_id)
+        = render partial: "partial/tweet", collection: @tweets
+      - else
+        = "なし"
       = render "partial/tweet", {tweet: @tweet}
       = form_for Tweet.new do |f|
         = f.text_area :text, class: 'col-md-10 offset-md-1', placeholder: '返信をツイート'

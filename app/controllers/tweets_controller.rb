@@ -2,7 +2,6 @@ class TweetsController < ApplicationController
   before_action :set_tweet, only: [:index, :search, :hashtags]
 
   def index
-    @tweet = Tweet.new
     @tweets = Tweet.where(user_id: current_user.following.ids.push(current_user.id)).reverse_order
     @user = User.all
   end
@@ -17,11 +16,14 @@ class TweetsController < ApplicationController
 
   def create
     Tweet.create(tweet_params)
-    redirect_to root_path
+    if tweet_params[:parent_id].present?
+      redirect_to tweet_path(id: tweet_params[:parent_id])
+    else
+      redirect_to root_path
+    end
   end
 
   def search
-    @tweet = Tweet.new
     @tweets = Tweet.where('text LIKE(?)',"%#{params[:keyword]}%")
     @tag =""
   end

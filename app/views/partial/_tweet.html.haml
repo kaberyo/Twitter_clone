@@ -26,6 +26,12 @@
             .dropdown-divider
             %a.dropdown-item{:href => "#"} その他リンク
       .tweet__right--main
+        - if tweet.parent_id?
+          .tweet__right--reply
+            = "返信先:"
+            = link_to "@#{tweet.user.username}", user_path(id: tweet.user_id), class: "replyblue"
+            %br
+        - else
         %a.card-title
           = render_with_hashtags(tweet.text)
       .tweet__right--media
@@ -34,7 +40,6 @@
         %a.text-muted
           .tweet__right--reply.d-inline
             %label.reply
-              / = link_to new_tweet_path(parent_id: tweet) do
               = link_to tweet_path(id: tweet.id) do
                 %i.fas.fa-reply
           .tweet__right--favorite.d-inline
