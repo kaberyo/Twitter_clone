@@ -1,5 +1,6 @@
 class TweetsController < ApplicationController
   before_action :tagscount
+  before_action :set_tweet, only: [:index, :search, :hashtags]
 
   def index
     @tweet = Tweet.new
@@ -7,8 +8,11 @@ class TweetsController < ApplicationController
     @user = User.all
   end
 
+  def show
+    @tweet = Tweet.find(params[:id])
+  end
+
   def new
-    @tweet = Tweet.new
     @parent_id = params[:parent_id]
   end
 
@@ -18,6 +22,7 @@ class TweetsController < ApplicationController
   end
 
   def search
+    @tweet = Tweet.new
     @tweets = Tweet.where('text LIKE(?)',"%#{params[:keyword]}%")
     @tag =""
   end
@@ -39,5 +44,9 @@ class TweetsController < ApplicationController
   private
   def tweet_params
     params.require(:tweet).permit(:text, :media, :parent_id).merge(user_id: current_user.id)
+  end
+
+  def set_tweet
+    @tweet = Tweet.new
   end
 end
