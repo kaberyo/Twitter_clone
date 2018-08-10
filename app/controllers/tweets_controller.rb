@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-  before_action :tagscount
+  before_action :tagscount, only: :index
   before_action :set_tweet, only: [:index, :search, :hashtags]
 
   def index
@@ -30,15 +30,6 @@ class TweetsController < ApplicationController
   def hashtags
     @tag = Tag.find_by(name: params[:name])
     @tweets = @tag.tweets.order("created_at DESC")
-  end
-
-  def tagscount
-    tags = Tag.all
-    tags.each do |tag|
-      tag.tags_count = tag.tweets.count
-      tag.save
-    end
-    @trend = Tag.order("tags_count DESC")
   end
 
   private
