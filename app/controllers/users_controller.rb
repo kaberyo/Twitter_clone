@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :user_followers_count
+   before_action :user_followers_count,only: [:index, :show, :favorites,:followers,:followings]
+
   def index
      @users = User.where('name LIKE(?)', "%#{params[:keyword]}%").where.not(name: current_user.name)
   end
@@ -9,7 +10,7 @@ class UsersController < ApplicationController
 
   def update
     if current_user.update(user_params)
-      redirect_to user_path
+      redirect_to userpath
     else
       render :edit
     end
@@ -47,23 +48,6 @@ class UsersController < ApplicationController
   def followers
     @user  = User.find(params[:id])
     @users = @user.followers
-  end
-
-  def user_followers_count
-    users = User.all
-    users.each do |user|
-      user.followers_count = user.followers.count
-      user.save
-    end
-    binding.pry
-    number = User.all.ids - [current_user.id]
-    candidates = []
-    number.each do |num|
-      candidate = User.find(num)
-      candidates << candidate
-    end
-    @recommends = User.order("followers_count DESC").limit(3)
-    @recommends = candidates.order("followers_count DESC").limit(3)
   end
 
   private
