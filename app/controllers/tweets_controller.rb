@@ -1,4 +1,5 @@
 class TweetsController < ApplicationController
+  before_action :user_followers_count,only: [:index,:hashtag,:show]
   before_action :tagscount, only: :index
   before_action :set_tweet, only: [:index, :search, :hashtags]
   def index
