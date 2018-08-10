@@ -21,7 +21,14 @@ class TweetsController < ApplicationController
   def search
     @tweet = Tweet.new
     @tweets = Tweet.where('text LIKE(?)',"%#{params[:keyword]}%")
+    @tag =""
   end
+
+  def hashtags
+    @tag = Tag.find_by(name: params[:name])
+    @tweets = @tag.tweets.order("created_at DESC")
+  end
+
 
   private
   def tweet_params

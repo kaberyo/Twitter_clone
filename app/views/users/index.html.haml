@@ -1,5 +1,5 @@
 = render "partial/navbar"
-= render "partial/searchBar",{keyword: params[:keyword]}
+= render "partial/searchBar",{keyword: params[:keyword],tag: @tag}
 .wrapper
   .content.row
     .content-left.col-md-3.offset-md-1

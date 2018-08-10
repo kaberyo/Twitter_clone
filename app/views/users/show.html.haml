@@ -8,14 +8,13 @@
   %nav.navbar.navbar-expand-lg.bg-light.navbar-light.sticky-top.row
     %ul.navbar-nav.col-md-4.offset-md-4
       %li.nav-item.col-md-3
-        %a.nav-link{:href => "#"} ツイート#{@user.tweets.count}
+        = link_to "ツイート#{@user.tweets.count}", user_path(@user.id) ,class: 'nav-link'
       %li.nav-item.col-md-3
         = link_to "フォロー#{@user.following.count}", "/users/#{@user.id}/following" ,class: 'nav-link'
       %li.nav-item.col-md-3
         = link_to "フォロワー#{@user.followers.count}", "/users/#{@user.id}/followers" ,class: 'nav-link'
       %li.nav-item.col-md-3
         = link_to "いいね#{@user.favorites.count}", favorites_user_path(@user.id) ,class: 'nav-link'
-        / %a.nav-link{:href => "#"} いいね
     - if user_signed_in? && current_user.id == @user.id
       = link_to "プロフィールを編集", "/users/#{current_user.id}/edit" ,class: ' btn btn-outline-secondary col-md-2 offset-md-1'
     = render "partial/follow_form" ,{user: @user}

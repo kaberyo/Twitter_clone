@@ -7,7 +7,6 @@
             = image_tag tweet.user.avator.url, class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
           - else
             = image_tag "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmvLAgpfLfR8hXo5ZfZHupQ8B1dDt5FqbnxQ-WlDvvSIBq3UUMgg", class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
-
     .tweet__right.col-md-10
       .tweet__right--header
         %strong
@@ -28,7 +27,7 @@
             %a.dropdown-item{:href => "#"} その他リンク
       .tweet__right--main
         %a.card-title
-          = tweet.text
+          = render_with_hashtags(tweet.text)
       .tweet__right--media
         = image_tag tweet.media.url, class: 'img-fluid' if tweet.media.present?
       .tweet__right--bottom
