@@ -6,7 +6,7 @@ class TweetsController < ApplicationController
   end
 
   def show
-    @tweets = Tweet.find(params[:id])
+    @tweets = Tweet.where(id: params[:id])
     # binding.pry
   end
 
