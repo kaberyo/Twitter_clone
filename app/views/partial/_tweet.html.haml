@@ -11,9 +11,9 @@
     .tweet__right.col-md-10
       .tweet__right--header
         %strong
-        = link_to"/users/#{tweet.user.id}" do
-          .linkcolorblack
-            = tweet.user.name
+          = link_to"/users/#{tweet.user.id}" do
+            .linkcolorblack
+              = tweet.user.name
         %h6.card-subtitle.mb-2.text-muted.d-inline
           = "@#{tweet.user.username}"
         %h6.card-subtitle.mb-2.text-muted.d-inline
