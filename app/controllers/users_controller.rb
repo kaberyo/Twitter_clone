@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     medias = []
     @user = User.find(params[:id])
     @users = current_user.following & @user.followers
-    @tweets = @user.tweets
+    @tweets = @user.tweets.reverse_order
     @tweets.each do |tweet|
       media = tweet.media.url
       medias << media
