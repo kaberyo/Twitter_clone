@@ -1,5 +1,8 @@
 class TweetsController < ApplicationController
+  before_action :tagscount
+
   def index
+    @tweet = Tweet.new
     @tweets = Tweet.where(user_id: current_user.following.ids.push(current_user.id)).reverse_order
     @user = User.all
   end
@@ -24,6 +27,14 @@ class TweetsController < ApplicationController
     @tweets = @tag.tweets.order("created_at DESC")
   end
 
+  def tagscount
+    tags = Tag.all
+    tags.each do |tag|
+      tag.tags_count = tag.tweets.count
+      tag.save
+    end
+    @trend = Tag.order("tags_count DESC")
+  end
 
   private
   def tweet_params
