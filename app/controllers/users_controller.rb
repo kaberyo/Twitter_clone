@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-   before_action :user_followers_count,only: [:index, :show, :favorites,:followers,:followings]
+   before_action :user_followers_count,only: [:index, :show, :favorites,:followers,:following]
   before_action :set_tweet
 
   def index
