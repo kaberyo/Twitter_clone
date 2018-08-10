@@ -16,6 +16,7 @@ class TweetsController < ApplicationController
 
   def search
     @tweets = Tweet.where('text LIKE(?)',"%#{params[:keyword]}%")
+    @tag =""
   end
 
   def hashtags
