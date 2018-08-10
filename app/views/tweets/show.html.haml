@@ -1,0 +1,19 @@
+= render "partial/navbar"
+.wrapper
+  .content.row
+    = render "partial/userPanel", {user: current_user}
+    #tweet_body.col-md-4.offset-col-4.my-3
+      = render "partial/tweet", {tweet: @tweet}
+      = form_for Tweet.new do |f|
+        = f.text_area :text, class: 'col-md-10 offset-md-1', placeholder: '返信をツイート'
+        = f.label :media, class: 'tweet-media col-md-1' do
+          %i.fas.fa-camera-retro
+          = f.file_field :media, class: 'displaynone'
+        = f.hidden_field :parent_id, value: params[:id]
+        = f.submit 'Tweet', class: 'col-md-2 offset-md-9 my-1 btn btn-info'
+
+      - @tweets = Tweet.where(parent_id: params[:id])
+      = render partial: "partial/tweet", collection: @tweets
+
+    .content-rihgt.col-md-3.offset-col-8
+      = render "partial/recomendPanel"

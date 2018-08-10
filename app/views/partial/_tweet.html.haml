@@ -1,7 +1,7 @@
 .wrapper.card.my-2
   .tweet.card-body.row
     .tweet__left.col-md-2
-      = link_to "/users/#{tweet.user.id}" do
+      = link_to "/users/#{tweet.user_id}" do
         .tweet__left--user-avatar
           - if tweet.user.avator.present?
             = image_tag tweet.user.avator.url, class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
@@ -10,13 +10,13 @@
     .tweet__right.col-md-10
       .tweet__right--header
         %strong
-        = link_to"/users/#{tweet.user.id}" do
-          .linkcolorblack
-            = tweet.user.name
+          = link_to"/users/#{tweet.user.id}" do
+            .linkcolorblack.d-inline
+              = tweet.user.name
         %h6.card-subtitle.mb-2.text-muted.d-inline
           = "@#{tweet.user.username}"
         %h6.card-subtitle.mb-2.text-muted.d-inline
-          = tweet.created_at.to_s(:human)
+          = link_to "#{tweet.created_at.to_s(:human)}", tweet_path(id: tweet.id)
         .btn-group.float-right
           %button.btn.btn-muted.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", type: "button"}
           .dropdown-menu
@@ -34,7 +34,8 @@
         %a.text-muted
           .tweet__right--reply.d-inline
             %label.reply
-              = link_to new_tweet_path(parent_id: tweet) do
+              / = link_to new_tweet_path(parent_id: tweet) do
+              = link_to tweet_path(id: tweet.id) do
                 %i.fas.fa-reply
           .tweet__right--favorite.d-inline
             - if tweet.fav?(current_user.id, tweet.id)

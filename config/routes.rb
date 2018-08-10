@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   root "tweets#index"
   get '/post/hashtag/:name', to: "tweets#hashtags"
-  resources :tweets, only: [:index, :new, :create] do
+
+  resources :tweets, only: [:index, :new, :create, :show] do
     resources :favorites , only: [:create, :destroy]
     collection do
       get :search
