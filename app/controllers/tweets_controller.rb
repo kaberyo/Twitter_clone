@@ -31,7 +31,7 @@ class TweetsController < ApplicationController
 
   def hashtags
     @tag = Tag.find_by(name: params[:name])
-    @tweets = @tag.tweets.order("created_at DESC")
+    @tweets = @tag.tweets.order("created_at DESC").limit(10)
   end
 
   private
