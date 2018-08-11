@@ -33,4 +33,5 @@ class ApplicationController < ActionController::Base
     end
     @trend = Tag.order("tags_count DESC")
   end
+
 end
