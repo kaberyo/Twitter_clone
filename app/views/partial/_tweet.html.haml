@@ -24,7 +24,7 @@
         - if tweet.parent_id?
           .tweet__right--reply
             = "返信先:"
-            = link_to "@#{tweet.user.username}", user_path(id: tweet.user_id), class: "replyblue"
+            = link_to "@#{Tweet.find(tweet.parent_id).user.username}", user_path(id: Tweet.find(tweet.parent_id).user.id), class: "replyblue"
             %br
         - else
         %a.card-title
