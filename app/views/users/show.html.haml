@@ -41,16 +41,17 @@
                 %tr
                   %td.far.fa-comment
                   %td.card-text #{@user.about}
-                - if @users.present?
+                - if @users.present? && !(current_user.id == @user.id)
                   %tr
                     %td.fas.fa-users
                     %td.card-text{:href => "#"} #{@users.count}人の知り合いのフォロワー
-              - @users.each do |user|
-                = link_to (user_path(user)) do
-                  - if user.avator.present?
-                    = image_tag user.avator.url, class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
-                  - else
-                    = image_tag "/images/person.jpg", class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
+              - if @users.present? && !(current_user.id == @user.id)
+                - @users.each do |user|
+                  = link_to (user_path(user)) do
+                    - if user.avator.present?
+                      = image_tag user.avator.url, class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
+                    - else
+                      = image_tag "/images/person.jpg", class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
               - if @medias.present?
                 %table
                   %tr
