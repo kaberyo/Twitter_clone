@@ -1,7 +1,7 @@
 .signupBody
   .signupHeader
     %a.signupHeader__center{href: "#"}
-      %img.twitterlogo{src: "assets/Twitter_Logo_Blue.png", widht: "40px", height: "40px"}
+      %img.twitterlogo{src: "/images/Twitter_Logo_Blue.png", widht: "40px", height: "40px"}
   .signupMain
     = form_for(resource, as: resource_name, url: registration_path(resource_name) ,html: { class: 'signupMain__form' })do |f|
       = devise_error_messages!
