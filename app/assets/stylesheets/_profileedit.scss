@@ -37,6 +37,10 @@
     padding: 0 10%;
     position: relative;
 
+    .profileEdit__form__cover__preview{
+      position: absolute;
+      left: 100;
+    }
     .profileEdit__form__cover{
       background-color: rgba(0, 0, 0, 0.3);
       height: 200px;
@@ -55,6 +59,11 @@
           display: none;
         }
       }
+    }
+    .profileEdit__form__avater__preview{
+      position: absolute;
+      top: 150px;
+      left: 150px;
     }
     .profileEdit__form__avater{
       position: relative;
