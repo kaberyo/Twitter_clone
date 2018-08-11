@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root "tweets#index"
   get '/post/hashtag/:name', to: "tweets#hashtags"
 
-  resources :tweets, only: [:index, :new, :create, :show] do
+  resources :tweets, only: [:index, :new, :create, :show, :destroy] do
     resources :favorites , only: [:create, :destroy]
     collection do
       get :search

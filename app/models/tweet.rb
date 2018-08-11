@@ -5,7 +5,7 @@ class Tweet < ActiveRecord::Base
   has_many :retweets
   has_many :users, through: :retweets
   has_many :tweets_tags
-  has_many :tags, through: :tweets_tags
+  has_many :tags, through: :tweets_tags, dependent: :destroy
 
 
   mount_uploader :media, MediaUploader
