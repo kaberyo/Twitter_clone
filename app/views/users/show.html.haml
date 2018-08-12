@@ -52,13 +52,14 @@
                       = image_tag user.avator.url, class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
                     - else
                       = image_tag "/images/person.jpg", class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
-              - if @medias.present?
+              - if @tweet_medias.present?
                 %table
                   %tr
                     %td.far.fa-images
                     %td.card-text 画像/動画
-                - @medias.each do |media|
-                  = image_tag media, class: 'image_trimming', width: "70",height: "70"
+                - @tweet_medias.each do |tweet_media|
+                  =link_to (tweet_path(tweet_media)) do
+                    = image_tag tweet_media.media.url, class: 'my-1 image_trimming', width: "70",height: "70"
 
         .content-timeline.col-md-4.my-3
           = render partial: "partial/tweet", collection: @tweets
