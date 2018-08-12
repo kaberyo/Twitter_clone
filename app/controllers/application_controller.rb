@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
       user.save
     end
     candidates = User.where.not(id:current_user.id).where.not(id:current_user.following.ids)
-    @recommends = candidates.order("followers_count DESC").limit(2)
+    @recommends = candidates.order("followers_count DESC").limit(5)
   end
 
     protected
