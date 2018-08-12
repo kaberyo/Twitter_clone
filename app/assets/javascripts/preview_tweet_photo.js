@@ -2,7 +2,6 @@ $(document).on('turbolinks:load', function() {
   $(function(){
     //画像ファイルプレビュー表示のイベント追加 fileを選択時に発火するイベントを登録
     $(".new_tweet").on('change', function(e) {
-      console.log("成功")
       var file = e.target.files[0],
           reader = new FileReader(),
           $preview = $(".content__timeline__photo");
