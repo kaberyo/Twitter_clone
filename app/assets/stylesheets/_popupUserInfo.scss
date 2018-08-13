@@ -1,0 +1,22 @@
+.hidden{
+  display: none;
+}
+.popup {
+  display: none;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 2;
+}
+
+.popupcardBody{
+  height: 100%;
+  margin: 0 5px 5px 5px;
+  position: relative;
+  .circlePosition{
+    position: absolute;
+    left: 20px;
+    top: 50px;
+  }
+}
+

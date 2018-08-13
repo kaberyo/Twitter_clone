@@ -9,10 +9,13 @@
             = image_tag "/images/person.jpg", class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
     .tweet__right.col-md-10
       .tweet__right--header
-        %strong
+        %input.user_info{type: "hidden",value: "#{tweet.user_id}"}
+        %strong.userpanel-popup
           = link_to"/users/#{tweet.user.id}" do
             .linkcolorblack.d-inline
               = tweet.user.name
+            .popup
+              = render "partial/popup_tweet" , {tweet: tweet}
         %h6.card-subtitle.mb-2.text-muted.d-inline
           = "@#{tweet.user.username}"
         %h6.card-subtitle.mb-2.text-muted.d-inline

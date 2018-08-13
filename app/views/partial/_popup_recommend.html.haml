@@ -1,0 +1,22 @@
+.card.popupcardBody{ style: "width: 18rem;"}
+  - if recommend.cover.present?
+    = link_to "/users/#{recommend.id}" ,class: 'thumbnail' do
+      = image_tag recommend.cover.url, class: 'card-img-top image_trimming',alt: "Card image cap", width: "256", height: "100"
+  - else
+    = link_to "/users/#{recommend.id}" ,class: 'thumbnail' do
+      = image_tag "/images/cover.jpeg", class: 'card-img-top image_trimming',alt: "Card image cap", width: "256", height: "100"
+  - if recommend.avator.present?
+    = image_tag recommend.avator.url, class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "70",height: "70"
+  - else
+    = image_tag "/images/person.jpg", class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "70",height: "70"
+  .card-body
+    .card-body-title #{recommend.name}
+    .btn-right
+      = render "partial/follow_form" , {user: recommend}
+    %h8.card-text.text-secondary @#{recommend.username}
+    %p.card-text
+      = truncate(recommend.about, length:40)
+    .body-bottom.d-md-inline-flex
+      = link_to "ツイート:#{recommend.tweets.count}", user_path(recommend.id), class: 'text-muted card-link'
+      = link_to "フォロー:#{recommend.following.count}", following_user_path(recommend.id), class: 'text-muted card-link'
+      = link_to "フォロワー:#{recommend.followers.count}", followers_user_path(recommend.id), class: 'text-muted card-link'
