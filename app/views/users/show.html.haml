@@ -34,17 +34,17 @@
                   .card-text.text-secondary #{"@"+ @user.username}
                 %tr
                   %td.fas.fa-map-marker-alt
-                  %td.card-text #{@user.location}
+                  %td.card-text{style: "word-break: break-all;"} #{@user.location}
                 %tr
                   %td.fas.fa-link
-                  %td.card-text #{@user.website}
+                  %td.card-text{style: "word-break: break-all;"} #{@user.website}
                 %tr
                   %td.far.fa-comment
-                  %td.card-text #{@user.about}
+                  %td.card-text{style: "word-break: break-all;"} #{@user.about}
                 - if @users.present? && !(current_user.id == @user.id)
                   %tr
                     %td.fas.fa-users
-                    %td.card-text{:href => "#"} #{@users.count}人の知り合いのフォロワー
+                    %td.card-text{style: "word-break: break-all;"} #{@users.count}人の知り合いのフォロワー
               - if @users.present? && !(current_user.id == @user.id)
                 - @users.each do |user|
                   = link_to (user_path(user)) do
@@ -57,11 +57,14 @@
                   %tr
                     %td.far.fa-images
                     %td.card-text 画像/動画
-                - @tweet_medias.each do |tweet_media|
+                - @tweet_medias.first(9).each do |tweet_media|
                   =link_to (tweet_path(tweet_media)) do
                     = image_tag tweet_media.media.url, class: 'my-1 image_trimming', width: "70",height: "70"
-
         .content-timeline.col-md-4.my-3
           = render partial: "partial/tweet", collection: @tweets
         .content-timeline.col-md-3.my-3
           = render partial: "partial/recommend",collection: @recommends
+          .card.my-4
+            .card-body
+              %h4.card-title トレンド
+              = render partial: "partial/trend", collection: @trend
