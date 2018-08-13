@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180809172046) do
+ActiveRecord::Schema.define(version: 20180813031648) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer  "user_id",    limit: 4, null: false
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 20180809172046) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
+    t.integer  "favorited_count",        limit: 4,   default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

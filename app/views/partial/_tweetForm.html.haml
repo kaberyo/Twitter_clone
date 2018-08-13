@@ -1,6 +1,5 @@
 = form_for @tweet do |f|
   = f.text_area :text, class: 'col-md-10 offset-md-1', placeholder: 'いまどうしてる？'
-  / = f.label :media, class: 'tweet-media col-md-1' do
   .content__timeline__photo
   %i.fas.fa-camera-retro
   = f.file_field :media
