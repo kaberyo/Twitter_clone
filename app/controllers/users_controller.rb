@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-   before_action :user_followers_count,only: [:index, :show, :favorites,:followers,:following]
+  before_action :recommend_users, only: [:index, :show, :favorites,:followers,:following]
   before_action :set_tweet
 
   def index
@@ -25,7 +25,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @users = current_user.following & @user.followers
-
     @tweets = @user.tweets.reverse_order
     tweet_medias = []
     @tweets.each do |tweet|
