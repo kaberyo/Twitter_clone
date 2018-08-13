@@ -10,12 +10,12 @@
     .tweet__right.col-md-10
       .tweet__right--header
         %input.user_info{type: "hidden",value: "#{tweet.user_id}"}
-        %strong.userpanel-popup
-          = link_to"/users/#{tweet.user.id}" do
-            .linkcolorblack.d-inline
-              = tweet.user.name
-            .popup
-              = render "partial/popup_tweet" , {tweet: tweet}
+      .userpanel-popup
+        = link_to"/users/#{tweet.user.id}" do
+          %strong.linkcolorblack.d-inline
+            = tweet.user.name
+          .popup
+            = render "partial/popup_tweet" , {tweet: tweet}
         %h6.card-subtitle.mb-2.text-muted.d-inline
           = "@#{tweet.user.username}"
         %h6.card-subtitle.mb-2.text-muted.d-inline
