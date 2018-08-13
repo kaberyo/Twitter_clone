@@ -4,7 +4,6 @@ class TweetsController < ApplicationController
   before_action :set_tweet, only: [:index, :search, :hashtags]
   def index
     @tweets = Tweet.where(user_id: current_user.following.ids.push(current_user.id)).reverse_order
-    @user = User.all
   end
 
   def show

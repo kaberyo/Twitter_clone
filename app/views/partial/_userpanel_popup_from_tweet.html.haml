@@ -1,0 +1,22 @@
+.card.popupcardBody{ style: "width: 18rem;"}
+  - if tweet.user.cover.present?
+    = link_to "/users/#{tweet.user.id}" ,class: 'thumbnail' do
+      = image_tag tweet.user.cover.url, class: 'card-img-top image_trimming',alt: "Card image cap", width: "256", height: "100"
+  - else
+    = link_to "/users/#{tweet.user.id}" ,class: 'thumbnail' do
+      = image_tag "/images/cover.jpeg", class: 'card-img-top image_trimming',alt: "Card image cap", width: "256", height: "100"
+  - if tweet.user.avator.present?
+    = image_tag tweet.user.avator.url, class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "70",height: "70"
+  - else
+    = image_tag "/images/person.jpg", class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "70",height: "70"
+  .card-body
+    .card-body-title #{tweet.user.name}
+    .btn-right
+      = render "partial/follow_form" , {user: tweet.user}
+    %h8.card-text.text-secondary @#{tweet.user.username}
+    %p.card-text
+      = truncate(tweet.user.about, length:40)
+    .body-bottom.d-md-inline-flex
+      = link_to "ツイート:#{tweet.user.tweets.count}", user_path(tweet.user.id), class: 'text-muted card-link'
+      = link_to "フォロー:#{tweet.user.following.count}", following_user_path(tweet.user.id), class: 'text-muted card-link'
+      = link_to "フォロワー:#{tweet.user.followers.count}", followers_user_path(tweet.user.id), class: 'text-muted card-link'

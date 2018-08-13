@@ -8,5 +8,11 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    %input#refresh{:type => "hidden", :value => "no"}/
+    :javascript
+      $(document).ready(function() {
+         var $input = $('#refresh');
+         $input.val() == 'yes' ? location.reload(true) : $input.val('yes');
+      });
   %body
     = yield
