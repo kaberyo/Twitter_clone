@@ -12,7 +12,6 @@
         %a.nav-link{href: "#"} 通知
       %li.nav-item
         %a.nav-link{href: "#"} メッセージ
-    / %form.form-inline.my-2.my-lg-0
     = form_tag('/users', method: :get, class: "form-inline my-2 my-lg-0") do
       = text_field_tag :name, "",placeholder: "ユーザー&ツイート検索",class: 'form-control mr-sm-2',name: "keyword",id:'user-search-field',autocomplete: "off"
       = submit_tag "search", class: "btn btn-outline-success my-2 my-sm-0 mx-2"

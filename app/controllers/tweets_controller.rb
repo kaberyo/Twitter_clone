@@ -1,10 +1,9 @@
 class TweetsController < ApplicationController
-  before_action :user_followers_count,only: [:index,:hashtag,:show]
+  before_action :recommend_users, only: [:index,:hashtag,:show]
   before_action :tagscount, only: :index
   before_action :set_tweet, only: [:index, :search, :hashtags]
   def index
     @tweets = Tweet.where(user_id: current_user.following.ids.push(current_user.id)).reverse_order
-    @user = User.all
   end
 
   def show
