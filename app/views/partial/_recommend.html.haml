@@ -9,9 +9,9 @@
             = image_tag "/images/person.jpg", class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
     .recommend__right.col-md-10
       .recommend__right--header
-        %strong.userpanel-popup
+        .userpanel-popup
           = link_to "/users/#{recommend.id}" do
-            .linkcolorblack
+            %strong.linkcolorblack
               #{recommend.name}
             .popup
               = render "partial/userpanel_popup_from_recommend" , {recommend: recommend}
