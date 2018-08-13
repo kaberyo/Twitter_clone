@@ -5,7 +5,7 @@
       = image_tag @user.cover.url, class: 'img-fluid header-pic image_trimming'
     - else
       = image_tag "/images/cover.jpeg", class: 'img-fluid header-pic image_trimming'
-  %nav.navbar.navbar-expand-lg.bg-light.navbar-light.sticky-top.row
+  %nav.navbar.navbar-expand-lg.bg-light.navbar-light.row
     %ul.navbar-nav.col-md-4.offset-md-4
       %li.nav-item.col-md-3
         = link_to "ツイート#{@user.tweets.count}", user_path(@user.id) ,class: 'nav-link'
@@ -18,15 +18,15 @@
     - if user_signed_in? && current_user.id == @user.id
       = link_to "プロフィールを編集", "/users/#{current_user.id}/edit" ,class: ' btn btn-outline-secondary col-md-2 offset-md-1'
     = render "partial/follow_form" ,{user: @user}
+  - if @user.avator.present?
+    = image_tag @user.avator.url, class: 'rounded-circle showCirclePosition image_trimming',alt: "Cinque Terre", width: "250",height: "250"
+  - else
+    = image_tag "/images/person.jpg", class: 'rounded-circle showCirclePosition image_trimming',alt: "Cinque Terre", width: "250",height: "250"
   .container-fluid
     .wrapper
       .dashboard.row
         .content-left.col-md-3.offset-md-1
           .my-4
-            - if @user.avator.present?
-              = image_tag @user.avator.url, class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "250",height: "250"
-            - else
-              = image_tag "/images/person.jpg", class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "250",height: "250"
             .card-body
               .card-body-title #{@user.name}
               %table
