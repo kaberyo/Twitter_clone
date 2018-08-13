@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :recommend_users, only: [:index, :show, :favorites,:followers,:following]
+  before_action :tagscount, only: [:index, :show, :favorites,:followers,:following]
   before_action :set_tweet
 
   def index

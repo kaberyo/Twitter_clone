@@ -34,17 +34,39 @@
                   .card-text.text-secondary #{"@"+ @user.username}
                 %tr
                   %td.fas.fa-map-marker-alt
-                  %td.card-text #{@user.location}
+                  %td.card-text{style: "word-break: break-all;"} #{@user.location}
                 %tr
                   %td.fas.fa-link
-                  %td.card-text #{@user.website}
+                  %td.card-text{style: "word-break: break-all;"} #{@user.website}
                 %tr
                   %td.far.fa-comment
-                  %td.card-text #{@user.about}
+                  %td.card-text{style: "word-break: break-all;"} #{@user.about}
+                - if @users.present? && !(current_user.id == @user.id)
+                  %tr
+                    %td.fas.fa-users
+                    %td.card-text{style: "word-break: break-all;"} #{@users.count}人の知り合いのフォロワー
+              - if @users.present? && !(current_user.id == @user.id)
+                - @users.each do |user|
+                  = link_to (user_path(user)) do
+                    - if user.avator.present?
+                      = image_tag user.avator.url, class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
+                    - else
+                      = image_tag "/images/person.jpg", class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
+              - if @tweet_medias.present?
+                %table
+                  %tr
+                    %td.far.fa-images
+                    %td.card-text 画像/動画
+                - @tweet_medias.first(9).each do |tweet_media|
+                  =link_to (tweet_path(tweet_media)) do
+                    = image_tag tweet_media.media.url, class: 'my-1 image_trimming', width: "70",height: "70"
           = render partial: "partial/recommend",collection: @recommends
+          .card.my-4
+            .card-body
+              %h4.card-title トレンド
+              = render partial: "partial/trend", collection: @trend
+
         .content__timeline.col-md-8
           .row-eq-height.my-4
             - @users.each do |user|
               = render "partial/userCard" , {user: user}
-
-
