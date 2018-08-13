@@ -37,25 +37,54 @@ class UsersController < ApplicationController
   end
 
   def favorites
-    tweets = []
     @user = User.find(params[:id])
+    @users = current_user.following & @user.followers
+
+    tweets = @user.tweets.reverse_order
+    tweet_medias = []
+    tweets.each do |tweet|
+      if tweet.media.present? #compactでなくifで条件分岐
+        tweet_medias << tweet
+      end
+    end
+    @tweet_medias = tweet_medias
+
+    add_tweets = []
     @favorites = Favorite.where(user_id: @user.id)
     @favorites.each do |favorite|
       id = favorite.tweet_id
       tweet = Tweet.find(id)
-      tweets << tweet
+      add_tweets << tweet
     end
-    @tweets = tweets
+    @tweets = add_tweets
   end
 
   def following
     @user  = User.find(params[:id])
-    @users = @user.following
+    @following = @user.following
+    @users = current_user.following & @user.followers
+    tweets = @user.tweets.reverse_order
+    tweet_medias = []
+    tweets.each do |tweet|
+      if tweet.media.present? #compactでなくifで条件分岐
+        tweet_medias << tweet
+      end
+    end
+    @tweet_medias = tweet_medias
   end
 
   def followers
     @user  = User.find(params[:id])
-    @users = @user.followers
+    @followers = @user.followers
+    @users = current_user.following & @user.followers
+    tweets = @user.tweets.reverse_order
+    tweet_medias = []
+    tweets.each do |tweet|
+      if tweet.media.present? #compactでなくifで条件分岐
+        tweet_medias << tweet
+      end
+    end
+    @tweet_medias = tweet_medias
   end
 
   private

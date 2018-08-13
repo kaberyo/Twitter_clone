@@ -68,5 +68,5 @@
 
         .content__timeline.col-md-8
           .row-eq-height.my-4
-            - @users.each do |user|
+            - @followers.each do |user|
               = render "partial/userCard" , {user: user}
