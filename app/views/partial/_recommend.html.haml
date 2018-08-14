@@ -18,6 +18,5 @@
         %h6.card-subtitle.mb-2.text-muted.d-inline
           = "@#{recommend.username}"
     %a.col-md-4.offset-md-8
-      = form_for(current_user.active_relationships.build) do |f|
-        = hidden_field_tag :following_id, recommend.id
-        = f.submit "Follow", class: "btn btn-primary"
+      = render "partial/follow_form" , {user: recommend}
+
