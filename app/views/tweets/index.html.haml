@@ -1,9 +1,17 @@
 = render "partial/navbar"
 .wrapper
   .content.row
-    = render "partial/userPanel", {user: current_user}
+    .content-left.col-md-3.offset-md-1
+      = render "partial/userPanel", {user: current_user}
+      .card.my-4
+        .card-body
+          %h4.card-title トレンド
+          = render partial: "partial/trend", collection: @trend
     .content__timeline.col-md-4
       .my-4.bg-light
         = render "partial/tweetForm"
-      = render partial: "partial/tweet", collection: @tweets
-    = render "partial/recomendPanel"
+      #tweet_body
+        = render partial: "partial/tweet", collection: @tweets
+    .content-rihgt.col-md-3.my-3
+      = render partial: "partial/recommend",collection: @recommends
+#user-search-result

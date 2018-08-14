@@ -3,9 +3,16 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %script{:defer => "defer", :src => "https://use.fontawesome.com/releases/v5.0.6/js/all.js"}
+    %link{:crossorigin => "anonymous", :href => "https://use.fontawesome.com/releases/v5.2.0/css/all.css", :integrity => "sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ", :rel => "stylesheet"}/
     %title TwitterClone
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application'
     = csrf_meta_tags
+    %input#refresh{:type => "hidden", :value => "no"}/
+    :javascript
+      $(document).ready(function() {
+         var $input = $('#refresh');
+         $input.val() == 'yes' ? location.reload(true) : $input.val('yes');
+      });
   %body
     = yield

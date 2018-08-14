@@ -1,0 +1,7 @@
+%nav.border-bottom
+  - if tag.present?
+    .navbar-brand.h.text-info 『##{tag.name}』
+  - else
+    .navbar-brand.h1.text-info KEYWORD 『#{params[:keyword]}』
+    = link_to "SEARCH for USERS", users_path(keyword: params[:keyword]) ,class: 'btn btn-primary', role: "button"
+    = link_to "SEARCH for TWEETS", search_tweets_path(keyword: params[:keyword]) ,class: 'btn btn-primary', role: "button"

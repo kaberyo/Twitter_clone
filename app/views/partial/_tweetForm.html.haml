@@ -1,7 +1,7 @@
-- @tweet = Tweet.new
 = form_for @tweet do |f|
-  = f.text_area :text, class: 'form-control col-md-10 offset-md-1', placeholder: 'いまどうしてる？'
-  = f.label :media, class: 'tweet-media col-md-1' do
-    / %i.fas.fa-camera-retro
-    = f.file_field :media, class: ''
+  = f.text_area :text, class: 'col-md-10 offset-md-1', placeholder: 'いまどうしてる？'
+  .content__timeline__photo
+  %i.fas.fa-camera-retro
+  = f.file_field :media
+  = f.hidden_field :parent_id, value: ""
   = f.submit 'Tweet', class: 'col-md-2 offset-md-9 my-1 btn btn-info'

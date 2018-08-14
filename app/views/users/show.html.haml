@@ -1,39 +1,75 @@
 = render "partial/navbar"
 .wrapper
   .container-fluid
-    = image_tag @user.cover.url, class: 'img-fluid header-pic' if @user.cover.present?
-  %nav.navbar.navbar-expand-lg.bg-light.navbar-light.sticky-top.row
+    - if @user.cover.present?
+      = image_tag @user.cover.url, class: 'img-fluid header-pic image_trimming'
+    - else
+      = image_tag "/images/cover.jpeg", class: 'img-fluid header-pic image_trimming'
+  %nav.navbar.navbar-expand-lg.bg-light.navbar-light.row
     %ul.navbar-nav.col-md-4.offset-md-4
       %li.nav-item.col-md-3
+<<<<<<< HEAD
         %a.nav-link{:href => "#"} ツイート#{@user.tweets.count}
       %li#following.nav-item.col-md-3
+=======
+        = link_to "ツイート#{@user.tweets.count}", user_path(@user.id) ,class: 'nav-link'
+      %li.nav-item.col-md-3
+>>>>>>> 8dd37d1a5715c2ed9d299eaba3791dd052b88d47
         = link_to "フォロー#{@user.following.count}", "/users/#{@user.id}/following" ,class: 'nav-link'
       %li#followers.nav-item.col-md-3
         = link_to "フォロワー#{@user.followers.count}", "/users/#{@user.id}/followers" ,class: 'nav-link'
       %li.nav-item.col-md-3
-        %a.nav-link{:href => "#"} いいね
-    = link_to "プロフィールを編集", "/users/#{current_user.id}/edit" ,class: ' btn btn-outline-secondary col-md-2 offset-md-1'
+        = link_to "いいね#{@user.favorites.count}", favorites_user_path(@user.id) ,class: 'nav-link'
+    - if user_signed_in? && current_user.id == @user.id
+      = link_to "プロフィールを編集", "/users/#{current_user.id}/edit" ,class: ' btn btn-outline-secondary col-md-2 offset-md-1'
     = render "partial/follow_form" ,{user: @user}
+  - if @user.avator.present?
+    = image_tag @user.avator.url, class: 'rounded-circle showCirclePosition image_trimming',alt: "Cinque Terre", width: "250",height: "250"
+  - else
+    = image_tag "/images/person.jpg", class: 'rounded-circle showCirclePosition image_trimming',alt: "Cinque Terre", width: "250",height: "250"
   .container-fluid
     .wrapper
       .dashboard.row
         .content-left.col-md-3.offset-md-1
-          .card.my-4
-            = image_tag @user.avator.url, class: 'img-fluid' if @user.avator.present?
+          .my-4
             .card-body
-              %h5.card-title
-              = @user.name
-              %h6.card-subtitle.mb-2.text-muted
-              = @user.username
-              %p.card-text
-              = @user.about
-            %ul.list-group.list-group-flush
-              %li.list-group-item
-              = @user.location
-              %li.list-group-item
-              = @user.website
-
+              .card-body-title #{@user.name}
+              %table
+                %tr
+                  .card-text.text-secondary #{"@"+ @user.username}
+                %tr
+                  %td.fas.fa-map-marker-alt
+                  %td.card-text{style: "word-break: break-all;"} #{@user.location}
+                %tr
+                  %td.fas.fa-link
+                  %td.card-text{style: "word-break: break-all;"} #{@user.website}
+                %tr
+                  %td.far.fa-comment
+                  %td.card-text{style: "word-break: break-all;"} #{@user.about}
+                - if @users.present? && !(current_user.id == @user.id)
+                  %tr
+                    %td.fas.fa-users
+                    %td.card-text{style: "word-break: break-all;"} #{@users.count}人の知り合いのフォロワー
+              - if @users.present? && !(current_user.id == @user.id)
+                - @users.each do |user|
+                  = link_to (user_path(user)) do
+                    - if user.avator.present?
+                      = image_tag user.avator.url, class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
+                    - else
+                      = image_tag "/images/person.jpg", class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
+              - if @tweet_medias.present?
+                %table
+                  %tr
+                    %td.far.fa-images
+                    %td.card-text 画像/動画
+                - @tweet_medias.first(9).each do |tweet_media|
+                  =link_to (tweet_path(tweet_media)) do
+                    = image_tag tweet_media.media.url, class: 'my-1 image_trimming', width: "70",height: "70"
         .content-timeline.col-md-4.my-3
-          = render partial: "partial/tweet", collection: current_user.tweets
-        = render "partial/recomendPanel"
-
+          = render partial: "partial/tweet", collection: @tweets
+        .content-timeline.col-md-3.my-3
+          = render partial: "partial/recommend",collection: @recommends
+          .card.my-4
+            .card-body
+              %h4.card-title トレンド
+              = render partial: "partial/trend", collection: @trend

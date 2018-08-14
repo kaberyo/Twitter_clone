@@ -1,16 +1,25 @@
 .wrapper.card.my-2
   .tweet.card-body.row
     .tweet__left.col-md-2
-      .tweet__left--user-avatar
-        = image_tag tweet.user.avator.url, class: 'img-fluid' if tweet.user.avator.present?
+      = link_to "/users/#{tweet.user_id}" do
+        .tweet__left--user-avatar
+          - if tweet.user.avator.present?
+            = image_tag tweet.user.avator.url, class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
+          - else
+            = image_tag "/images/person.jpg", class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
     .tweet__right.col-md-10
       .tweet__right--header
-        %h5.card-title.d-inline
-          = tweet.user.name
+        %input.user_info{type: "hidden",value: "#{tweet.user_id}"}
+      .userpanel-popup
+        = link_to"/users/#{tweet.user.id}" do
+          %strong.linkcolorblack.d-inline
+            = tweet.user.name
+          .popup
+            = render "partial/userpanel_popup_from_tweet" , {tweet: tweet}
         %h6.card-subtitle.mb-2.text-muted.d-inline
-          = tweet.user.username
+          = "@#{tweet.user.username}"
         %h6.card-subtitle.mb-2.text-muted.d-inline
-          = tweet.created_at
+          = link_to "#{tweet.created_at.to_s(:human)}", tweet_path(id: tweet.id)
         .btn-group.float-right
           %button.btn.btn-muted.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", type: "button"}
           .dropdown-menu
@@ -19,19 +28,30 @@
             %a.dropdown-item{:href => "#"} メニュー3
             .dropdown-divider
             %a.dropdown-item{:href => "#"} その他リンク
-
       .tweet__right--main
-        %a.text-muted
-          = tweet.text
-          = image_tag tweet.media.url, class: 'img-fluid' if tweet.media.present?
-      .tweet__right--media
-      .tweet__right--bottom
-        - if tweet.fav?(current_user.id, tweet.id)
-          %label.unfav
-            %i.fas.fa-star
-            = button_to 'いいねを消す', tweet_favorite_path(id: current_user.id, tweet_id: tweet.id), method: :delete, class: 'displaynone'
+        - if tweet.parent_id?
+          .tweet__right--reply
+            = "返信先:"
+            = link_to "@#{tweet.user.username}", user_path(id: tweet.user_id), class: "replyblue"
+            %br
         - else
-          %label.fav
-            %i.far.fa-star
-            = button_to 'いいね', tweet_favorites_path(user_id: current_user.id, tweet_id: tweet.id), class: 'displaynone'
-        = tweet.favorites.count
+        %a.card-title
+          = render_with_hashtags(tweet.text)
+      .tweet__right--media
+        = image_tag tweet.media.url, class: 'img-fluid' if tweet.media.present?
+      .tweet__right--bottom
+        %a.text-muted
+          .tweet__right--reply.d-inline
+            %label.reply
+              = link_to tweet_path(id: tweet.id) do
+                %i.fas.fa-reply
+          .tweet__right--favorite.d-inline
+            - if tweet.fav?(current_user.id, tweet.id)
+              %label.unfav
+                %i.fas.fa-star
+                = button_to 'いいねを消す', tweet_favorite_path(id: current_user.id, tweet_id: tweet.id), method: :delete, class: 'displaynone'
+            - else
+              %label.fav
+                %i.far.fa-star
+                = button_to 'いいね', tweet_favorites_path(user_id: current_user.id, tweet_id: tweet.id), class: 'displaynone'
+            = tweet.favorites.count

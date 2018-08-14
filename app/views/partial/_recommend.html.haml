@@ -1,0 +1,23 @@
+.wrapper.card.my-2
+  .recommend.card-body.row
+    .recommend__left.col-md-2
+      = link_to "/users/#{recommend.id}" do
+        .recommend__left--user-avatar
+          - if recommend.avator.present?
+            = image_tag recommend.avator.url, class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
+          - else
+            = image_tag "/images/person.jpg", class: 'rounded-circle circlePosition image_trimming',alt: "Cinque Terre", width: "50",height: "50"
+    .recommend__right.col-md-10
+      .recommend__right--header
+        .userpanel-popup
+          = link_to "/users/#{recommend.id}" do
+            %strong.linkcolorblack
+              #{recommend.name}
+            .popup
+              = render "partial/userpanel_popup_from_recommend" , {recommend: recommend}
+        %h6.card-subtitle.mb-2.text-muted.d-inline
+          = "@#{recommend.username}"
+    %a.col-md-4.offset-md-8
+      = form_for(current_user.active_relationships.build) do |f|
+        = hidden_field_tag :following_id, recommend.id
+        = f.submit "Follow", class: "btn btn-primary"
