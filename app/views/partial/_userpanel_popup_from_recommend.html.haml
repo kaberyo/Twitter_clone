@@ -1,4 +1,4 @@
-.card.popupcardBody{ style: "width: 18rem;"}
+.card.popupcardBody{ style: "width: 20rem;"}
   - if recommend.cover.present?
     = link_to "/users/#{recommend.id}" ,class: 'thumbnail' do
       = image_tag recommend.cover.url, class: 'card-img-top image_trimming',alt: "Card image cap", width: "256", height: "100"
@@ -17,6 +17,13 @@
     %p.card-text
       = truncate(recommend.about, length:40)
     .body-bottom.d-md-inline-flex
-      = link_to "ツイート:#{recommend.tweets.count}", user_path(recommend.id), class: 'text-muted card-link'
-      = link_to "フォロー:#{recommend.following.count}", following_user_path(recommend.id), class: 'text-muted card-link'
-      = link_to "フォロワー:#{recommend.followers.count}", followers_user_path(recommend.id), class: 'text-muted card-link'
+      %li.nav-item.col-md-4
+        = link_to "ツイート", user_path(recommend.id), class: 'text-muted card-link card-link-word'
+        = link_to "#{recommend.tweets.count}", user_path(recommend.id), class: 'text-muted card-link card-link-number'
+      %li.nav-item.col-md-4
+        = link_to "フォロー", following_user_path(recommend.id), class: 'text-muted card-link card-link-word'
+        = link_to "#{recommend.following.count}", following_user_path(recommend.id), class: 'text-muted card-link card-link-number'
+
+      %li.nav-item.col-md-4
+        = link_to "フォロワー", followers_user_path(recommend.id), class: 'text-muted card-link card-link-word'
+        = link_to "#{recommend.followers.count}", followers_user_path(recommend.id), class: 'text-muted card-link card-link-number'

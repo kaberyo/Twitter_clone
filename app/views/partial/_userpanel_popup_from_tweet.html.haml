@@ -1,4 +1,4 @@
-.card.popupcardBody{ style: "width: 18rem;"}
+.card.popupcardBody{ style: "width: 20rem;"}
   - if tweet.user.cover.present?
     = link_to "/users/#{tweet.user.id}" ,class: 'thumbnail' do
       = image_tag tweet.user.cover.url, class: 'card-img-top image_trimming',alt: "Card image cap", width: "256", height: "100"
@@ -17,6 +17,12 @@
     %p.card-text
       = truncate(tweet.user.about, length:40)
     .body-bottom.d-md-inline-flex
-      = link_to "ツイート:#{tweet.user.tweets.count}", user_path(tweet.user.id), class: 'text-muted card-link'
-      = link_to "フォロー:#{tweet.user.following.count}", following_user_path(tweet.user.id), class: 'text-muted card-link'
-      = link_to "フォロワー:#{tweet.user.followers.count}", followers_user_path(tweet.user.id), class: 'text-muted card-link'
+      %li.nav-item.col-md-4
+        = link_to "ツイート", user_path(tweet.user.id), class: 'text-muted card-link card-link-word'
+        = link_to "#{tweet.user.tweets.count}", user_path(tweet.user.id), class: 'text-muted card-link card-link-number'
+      %li.nav-item.col-md-4
+        = link_to "フォロー", following_user_path(tweet.user.id), class: 'text-muted card-link card-link-word'
+        = link_to "#{tweet.user.following.count}", following_user_path(tweet.user.id), class: 'text-muted card-link card-link-number'
+      %li.nav-item.col-md-4
+        = link_to "フォロワー", followers_user_path(tweet.user.id), class: 'text-muted card-link card-link-word'
+        = link_to "#{tweet.user.followers.count}", followers_user_path(tweet.user.id), class: 'text-muted card-link card-link-number'

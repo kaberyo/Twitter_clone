@@ -8,13 +8,17 @@
   %nav.navbar.navbar-expand-lg.bg-light.navbar-light.row
     %ul.navbar-nav.col-md-4.offset-md-4
       %li.nav-item.col-md-3
-        = link_to "ツイート#{@user.tweets.count}", user_path(@user.id) ,class: 'nav-link'
+        = link_to "ツイート", user_path(@user.id) ,class: 'nav-link nav-link-word'
+        = link_to "#{@user.tweets.count}", user_path(@user.id) ,class: 'nav-link nav-link-number'
       %li.nav-item.col-md-3
-        = link_to "フォロー#{@user.following.count}", "/users/#{@user.id}/following" ,class: 'nav-link'
+        = link_to "フォロー", "/users/#{@user.id}/following",class: 'nav-link nav-link-word'
+        = link_to "#{@user.following.count}", "/users/#{@user.id}/following",class: 'nav-link nav-link-number'
       %li.nav-item.col-md-3
-        = link_to "フォロワー#{@user.followers.count}", "/users/#{@user.id}/followers" ,class: 'nav-link'
+        = link_to "フォロワー", "/users/#{@user.id}/followers" ,class: 'nav-link nav-link-word'
+        = link_to "#{@user.followers.count}", "/users/#{@user.id}/followers" ,class: 'nav-link nav-link-number'
       %li.nav-item.col-md-3
-        = link_to "いいね#{@user.favorites.count}", favorites_user_path(@user.id) ,class: 'nav-link'
+        = link_to "いいね", favorites_user_path(@user.id) ,class: 'nav-link nav-link-word'
+        = link_to "#{@user.favorites.count}", favorites_user_path(@user.id),class: 'nav-link nav-link-number'
     - if user_signed_in? && current_user.id == @user.id
       = link_to "プロフィールを編集", "/users/#{current_user.id}/edit" ,class: ' btn btn-outline-secondary col-md-2 offset-md-1'
     = render "partial/follow_form" ,{user: @user}

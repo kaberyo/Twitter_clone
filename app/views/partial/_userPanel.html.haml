@@ -14,6 +14,12 @@
     %h8.card-text.text-secondary #{"@"+user.username}
     %p.card-text #{user.about}
     .body-bottom.d-md-inline-flex
-      = link_to "ツイート:#{current_user.tweets.count}", user_path(id: current_user.id), class: 'text-muted card-link'
-      = link_to "フォロー:#{current_user.following.count}", following_user_path(current_user.id), class: 'text-muted card-link'
-      = link_to "フォロワー:#{current_user.followers.count}", followers_user_path(current_user.id), class: 'text-muted card-link'
+      %li.nav-item.col-md-4
+        = link_to "ツイート", user_path(id: current_user.id), class: 'text-muted card-link card-link-word'
+        = link_to "#{current_user.tweets.count}", user_path(id: current_user.id), class: 'text-muted card-link card-link-number'
+      %li.nav-item.col-md-4
+        = link_to "フォロー", following_user_path(current_user.id), class: 'text-muted card-link card-link-word'
+        = link_to "#{current_user.following.count}", following_user_path(current_user.id), class: 'text-muted card-link card-link-number'
+      %li.nav-item.col-md-4
+        = link_to "フォロワー", followers_user_path(current_user.id), class: 'text-muted card-link card-link-word'
+        = link_to "#{current_user.followers.count}", followers_user_path(current_user.id), class: 'text-muted card-link card-link-number'
