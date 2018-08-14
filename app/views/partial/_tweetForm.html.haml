@@ -1,4 +1,4 @@
-= form_for @tweet , remote: true do |f|
+= form_for Tweet.new , remote: true do |f|
   = f.text_area :text, class: 'col-md-10 offset-md-1 tweet_form_content', placeholder: 'いまどうしてる？'
   .content__timeline__photo
   %i.fas.fa-camera-retro
