@@ -16,15 +16,13 @@ class TweetsController < ApplicationController
 
   def create
     @tweet = Tweet.create(tweet_params)
-    respond_to do |format|
-      format.html { redirect_to root_path }
-      format.js
-    end
-  if tweet_params[:parent_id].present?
+    if tweet_params[:parent_id].present?
       redirect_to tweet_path(id: tweet_params[:parent_id])
-    # else
-    #   redirect_to root_path
-    #エルスをなくして非同期は実装可能だが、結局リプライ時にエラー発生してしまう。
+    else
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.js
+      end
     end
   end
 
