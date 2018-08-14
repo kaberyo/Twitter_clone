@@ -24,3 +24,16 @@
 @import "userpanel";
 @import "userIndex";
 @import "popupUserInfo";
+
+.nav-link-word {
+    padding: 0rem;
+    font-size : 12px;
+    font-weight: bold;
+    text-align: center;
+}
+.nav-link-number {
+    padding: 0rem;
+    font-size : 18px;
+    font-weight: bold;
+    text-align: center;
+}
