@@ -1,7 +1,7 @@
-= form_for Tweet.new do |f|
-  = f.text_area :text, class: 'col-md-10 offset-md-1', placeholder: 'いまどうしてる？'
+= form_for Tweet.new , remote: true do |f|
+  = f.text_area :text, class: 'col-md-10 offset-md-1 tweet_form_content', placeholder: 'いまどうしてる？'
   .content__timeline__photo
   %i.fas.fa-camera-retro
-  = f.file_field :media
+  = f.file_field :media , class: 'tweet_form_content_image'
   = f.hidden_field :parent_id, value: ""
   = f.submit 'Tweet', class: 'col-md-2 offset-md-9 my-1 btn btn-info'

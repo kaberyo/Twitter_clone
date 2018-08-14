@@ -16,11 +16,14 @@ class TweetsController < ApplicationController
   end
 
   def create
-    Tweet.create(tweet_params)
+    @tweet = Tweet.create(tweet_params)
     if tweet_params[:parent_id].present?
       redirect_to tweet_path(id: tweet_params[:parent_id])
     else
-      redirect_to root_path
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.js
+      end
     end
   end
 
