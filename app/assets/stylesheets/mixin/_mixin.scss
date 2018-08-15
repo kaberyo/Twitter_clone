@@ -22,3 +22,16 @@ a{
 li{
   list-style: none;
 }
+
+
+// .card
+//   = form_for Tweet.new , remote: true do |f|
+//     = f.text_area :text, class: 'my-4 col-md-10 offset-md-1 form-rounded form-control tweet_form_content ', placeholder: 'いまどうしてる？',rows: "4"
+//     .content__timeline__photo
+//     = f.label :media do
+//       = f.file_field :media , class: 'tweet_form_content_image displaynone'
+//       = fa_icon 'picture', class: 'fa fa-image'
+//     = f.hidden_field :parent_id, value: ""
+//     = f.submit '新しいツイート', class: 'offset-md-6 btn btn-sm badge-pill btn-primary'
+//
+
