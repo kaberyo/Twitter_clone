@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
-  before_action :recommend_users, only: [:index, :search]
-  before_action :tagscount, only: [:index, :search]
+  before_action :recommend_users, only: [:index, :search ,:hashtags]
+  before_action :tagscount, only: [:index, :search,:hashtags]
   before_action :set_tweet, only: [:index, :search, :hashtags]
 
   def index
