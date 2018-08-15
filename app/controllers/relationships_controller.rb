@@ -1,6 +1,6 @@
 class RelationshipsController < ApplicationController
 
-  def createAPP
+  def create
     @user = User.find(params[:following_id])
     current_user.follow(@user)
     respond_to do |format|
