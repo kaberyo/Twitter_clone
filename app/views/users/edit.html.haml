@@ -8,11 +8,15 @@
           = f.submit "保存", type: "submit" , class: "profileEdit__header__center--btn"
     .profileEdit__form
       .profileEdit__form__cover__preview
+        - if current_user.cover.present?
+          = image_tag current_user.cover.url, class: 'profileEdit__form__cover  image_trimming'
       .profileEdit__form__cover
         %label.profileEdit__form__cover--icon
           %i.fas.fa-camera.fa-3x
           = f.file_field :cover , class: "profileEdit__form__cover--form"
       .profileEdit__form__avater__preview
+        - if current_user.avator.present?
+          = image_tag current_user.avator.url, class: 'rounded-circle image_trimming',width: "150",height: "150"
       .profileEdit__form__avater
         %label.profileEdit__form__avater--icon
           %i.fas.fa-camera.fa-2x
