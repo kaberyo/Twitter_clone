@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     users.each do |user|
       user.tweets_count = user.tweets.count
       user.save
-  end
+    end
 # user_tweets_favireted_count
     users = User.all
     users.each do |user|
