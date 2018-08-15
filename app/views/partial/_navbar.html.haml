@@ -1,31 +1,33 @@
 #user-search-result.list-group
-%nav.navbar.navbar-expand-lg.navbar-light.bg-light.border-bottom
-  %a.navbar-brand.h1.text-info{href: "#"} Twitter
-  %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
-    %span.navbar-toggler-icon
+%nav.navbar.navbar-light.navbar-expand-lg.border-bottom{:style => "background-color: white;"}
   #navbarSupportedContent.collapse.navbar-collapse
-    %ul.navbar-nav.mr-auto
-      %li.nav-item
+    %ul.navbar-nav.mr-auto.ml-md-5
+      %li.nav-item.small
         = link_to "ホーム", root_path, method: :get, class: 'nav-link'
-      %li.nav-item
+      %li.nav-item.small
         %a.nav-link{href: "#"} モーメント
-      %li.nav-item
+      %li.nav-item.small
         %a.nav-link{href: "#"} 通知
-      %li.nav-item
+      %li.nav-item.small
         %a.nav-link{href: "#"} メッセージ
-    = form_tag('/users', method: :get, class: "form-inline my-2 my-lg-0") do
-      = text_field_tag :name, "",placeholder: "ユーザー&ツイート検索",class: 'form-control mr-sm-2',name: "keyword",id:'user-search-field',autocomplete: "off"
-      = submit_tag "search", class: "btn btn-outline-success my-2 my-sm-0 mx-2"
-    .btn-group{"aria-label" => "Button group with nested dropdown", :role => "group"}
-      %button.btn.btn-secondary{:type => "button"} User
+    = form_tag('/users', method: :get, class: "form-inline") do
+      = text_field_tag :name, "",placeholder: "ユーザー&ツイート検索",class: 'form-control mr-sm-1 form-control-sm',name: "keyword",id:'user-search-field',autocomplete: "off"
+      = button_tag(type: "submit", class: "btn btn-default mr-sm-2 search-btn-color") do
+        %i.fas.fa-search
+    = link_to "/users/#{current_user.id}" , class: "mr-md-3"do
+      .tweet__left--user-avatar
+        - if current_user.avator.present?
+          = image_tag current_user.avator.url, class: 'rounded-circle image_trimming',alt: "Cinque Terre", width: "40",height: "40"
+        - else
+          = image_tag "/images/person.jpg", class: 'rounded-circle image_trimming',alt: "Cinque Terre", width: "40",height: "40"
+    .btn-group.dropdown-color{"aria-label" => "Button group with nested dropdown", :role => "group"}
       .btn-group{:role => "group"}
-        %button#btnGroupDrop1.btn.btn-secondary.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
-          More
+        %button.btn.btn-outline-primary.btn-sm.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
         .dropdown-menu{"aria-labelledby" => "btnGroupDrop1"}
           = link_to "プロフィール", "/users/#{current_user.id}" ,class: 'dropdown-item'
-          %a.dropdown-item{:href => "#"} 設定
           = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'dropdown-item'
-    %button.btn.btn-info.mx-2{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
+          / %a.dropdown-item{:href => "#"} 設定
+    %button.btn.btn-sm.badge-pill.btn-primary.btn-pill.mx-2.mr-md-5{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
       Tweet
     #myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
       .modal-dialog.modal-dialog-centered{:role => "document"}
@@ -36,3 +38,5 @@
               %span{"aria-hidden" => "true"} ×
           .modal-body
             = render 'partial/tweetForm'
+  %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+    %span.navbar-toggler-icon
