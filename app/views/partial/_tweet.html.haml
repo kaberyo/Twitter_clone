@@ -33,7 +33,7 @@
           .tweet__right--reply
             = "返信先:"
             - parent_tweet = Tweet.find(tweet.parent_id)
-            = link_to "@#{parent_tweet.user.name}", user_path(id: parent_tweet.user_id), class: "replyblue"
+            = link_to "@#{parent_tweet.user.username}", user_path(id: parent_tweet.user_id), class: "replyblue"
             %br
         - else
         %a.card-title
