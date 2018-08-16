@@ -4,7 +4,7 @@
 .tweet__right--bottom--hukidashi{
   position: relative;
 }
-.henshin_popup{
+.reply_popup{
       display: none;
       width: 30px;
       position: absolute;
@@ -14,8 +14,8 @@
       color: white;
       font-size: 8px;
       padding: 5px;
-    }
-.iine_popup{
+}
+.favorite_popup{
       display: none;
       width: 40px;
       position: absolute;
@@ -26,4 +26,4 @@
       font-size: 8px;
       padding: 5px;
       left:30px;
-    }
+}

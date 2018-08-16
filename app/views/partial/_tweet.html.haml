@@ -46,7 +46,7 @@
             %label.reply
               = link_to tweet_path(id: tweet.id,) do
                 %i.fas.fa-reply
-            .henshin_popup
+            .reply_popup
               返信
           .tweet__right--favorite.d-inline
             - if tweet.fav?(current_user.id, tweet.id)
@@ -58,5 +58,5 @@
                 %i.far.fa-star
                 = button_to 'いいね', tweet_favorites_path(user_id: current_user.id, tweet_id: tweet.id), class: 'displaynone'
             = tweet.favorites.count
-            .iine_popup
+            .favorite_popup
               いいね
