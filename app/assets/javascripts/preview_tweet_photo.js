@@ -22,6 +22,7 @@ $(document).on('turbolinks:load', function() {
                     src: e.target.result,
                     width: "200px",
                     title: file.name,
+                    class: "rounded border border-secondary"
                 }));
         };
       })(file);

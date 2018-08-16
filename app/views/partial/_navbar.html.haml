@@ -27,10 +27,9 @@
           .dropdown-menu{"aria-labelledby" => "btnGroupDrop1"}
             = link_to "プロフィール", "/users/#{current_user.id}" ,class: 'dropdown-item'
             = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'dropdown-item'
-            / %a.dropdown-item{:href => "#"} 設定
       %button.btn.btn-sm.badge-pill.btn-primary.mx-2.mr-md-5{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
         ツイート
-      #myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+      #myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "5"}
         .modal-dialog.modal-dialog-centered{:role => "document"}
           .modal-content
             .modal-header
