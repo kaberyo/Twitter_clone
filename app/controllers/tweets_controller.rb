@@ -9,6 +9,7 @@ class TweetsController < ApplicationController
 
   def show
     @tweet = Tweet.find(params[:id])
+    @tweets = Tweet.where(parent_id: params[:id])
   end
 
   def new
@@ -18,7 +19,11 @@ class TweetsController < ApplicationController
   def create
     @tweet = Tweet.create(tweet_params)
     if tweet_params[:parent_id].present?
-      redirect_to tweet_path(id: tweet_params[:parent_id])
+      @parent_id = tweet_params[:parent_id]
+      respond_to do |format|
+        format.html { redirect_to tweet_path(id: tweet_params[:parent_id]) }
+        format.js
+      end
     else
       respond_to do |format|
         format.html { redirect_to root_path }

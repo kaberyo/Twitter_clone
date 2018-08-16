@@ -1,4 +1,8 @@
+<% if @parent_id.present? %>
+$("#tweet_body").append("<%= j(render 'partial/tweet' ,{tweet: @tweet})%>");
+<% else %>
 $("#tweet_body").prepend("<%= j(render 'partial/tweet' ,{tweet: @tweet})%>");
+<% end %>
 $('.tweet_form_content').val("");
 $('.tweet_form_content_image').val("");
 $('.content__timeline__photo').empty();
