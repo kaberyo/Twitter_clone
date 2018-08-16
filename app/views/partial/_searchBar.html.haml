@@ -1,7 +1,7 @@
 %nav.border-bottom
   - if tag.present?
-    .navbar-brand.h.text-info 『##{tag.name}』
+    .navbar-brand.text-primary.ml-md-5『##{tag.name}』
   - else
-    .navbar-brand.h1.text-info KEYWORD 『#{params[:keyword]}』
-    = link_to "SEARCH for USERS", users_path(keyword: params[:keyword]) ,class: 'btn btn-primary', role: "button"
-    = link_to "SEARCH for TWEETS", search_tweets_path(keyword: params[:keyword]) ,class: 'btn btn-primary', role: "button"
+    .navbar-brand.text-primary.ml-md-5  KEYWORD 『#{params[:keyword]}』
+  = link_to "ユーザー検索", users_path(keyword: params[:keyword]) ,class: 'badge badge-primary float-right mt-md-3 mr-md-5'
+  = link_to "ツイート検索", search_tweets_path(keyword: params[:keyword]) ,class: 'badge badge-primary float-right mt-md-3 mr-md-2'

@@ -25,5 +25,13 @@
 @import "userIndex";
 @import "popupUserInfo";
 @import "tweet";
+@import "navbar";
+@import "tweetFrom";
 
+body{
+  background-color: #f5f8fa;
+}
+
+
+// 背景変更application.html.hamlのbodyなのでここに記載
 
