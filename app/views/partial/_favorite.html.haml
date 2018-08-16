@@ -1,0 +1,8 @@
+%div{class: "favorite-#{tweet.id}"}
+  - if tweet.fav?(current_user.id, tweet.id)
+    = link_to (tweet_favorite_path(id: current_user.id, tweet_id: tweet.id)), method: :delete, remote: true do
+      %i.fas.fa-star
+  - else
+    = link_to (tweet_favorites_path(user_id: current_user.id, tweet_id: tweet.id)), method: :post , remote: true do
+      %i.far.fa-star
+  = tweet.favorites.count
