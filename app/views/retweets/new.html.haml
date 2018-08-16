@@ -1,6 +1,6 @@
-= form_for @tweet do |f|
-  = form_for Tweet.new do |f|
-    = f.text_area :text, class: 'my-4 col-md-10 offset-md-1 form-rounded form-control tweet_form_content ', placeholder: '引用ツイート（コメントを追加）',rows: "3"
-    = f.submit 'リツイート',type: "submit", class: 'btn btn-sm badge-pill btn-primary float-right mb-md-3 mr-md-4'
+= form_for @tweet, url: {controller: "retweets", action: "create"} do |f|
+  = f.text_area :text, class: 'my-4 col-md-10 offset-md-1 form-rounded form-control tweet_form_content ', placeholder: '引用ツイート（コメントを追加）',rows: "3"
+  = f.hidden_field :parent_id, value: params[:id]
+  = f.submit 'リツイート',type: "submit", class: 'btn btn-sm badge-pill btn-primary float-right mb-md-3 mr-md-4'
 
 = render partial: "partial/tweet", collection: @tweets

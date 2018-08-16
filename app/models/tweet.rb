@@ -18,6 +18,18 @@ class Tweet < ActiveRecord::Base
     favorites.where(user_id: fav_user_id, tweet_id: fav_tweet_id).exists?
   end
 
+  def retweet(other_tweet)
+    active_retweets.create(target_id: other_tweet.id)
+  end
+
+  def unretweet(other_tweet)
+    active_retweets.create(target_id: other_tweet.id).destroy
+  end
+
+  def retweet?(other_tweet)
+    targets.include?(other_tweet)
+  end
+
   after_create do
     tweet = Tweet.find_by(id: self.id)
     hashtags  = self.text.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
