@@ -1,0 +1,27 @@
+= render "partial/navbar"
+.wrapper
+  .content.row
+    .content-left.col-md-3.offset-md-1
+      = render "partial/userPanel", {user: current_user}
+    .col-md-4.offset-col-4.my-3
+      - if @notification.present?
+        .userpanel-popup
+          = link_to "#{@notification.notified_by.username}", "/users/#{@notification.notified_by_id}"
+          = "さんはあなたのツイートにいいね♡しました"
+          .popup
+            = render "partial/userpanel_popup_from_recommend" , {recommend: @notification.notified_by}
+      = render "partial/tweet", {tweet: @tweet}
+      .card.tweet_form_body
+        = form_for Tweet.new , remote: true do |f|
+          = f.text_area :text, class: 'my-4 col-md-10 offset-md-1 form-rounded form-control tweet_form_content ', placeholder: '返信をツイートする',rows: "3"
+          .content__timeline__photo
+          %label.offset-md-7.my-1
+            = fa_icon 'picture', class: 'fa fa-image'
+            = f.file_field "media" , class: 'tweet_form_content_image displaynone'
+          = f.hidden_field :parent_id, value: params[:id]
+          = f.submit '新しいツイート',type: "submit", class: 'btn btn-sm badge-pill btn-primary float-right mb-md-3 mr-md-4'
+      .reply-tweet
+        = render partial: "partial/tweet", collection: @tweets
+      #tweet_body
+    .content-rihgt.col-md-3.offset-col-8
+      = render partial: "partial/recommend"
