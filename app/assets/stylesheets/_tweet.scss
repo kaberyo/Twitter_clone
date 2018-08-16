@@ -1,3 +1,36 @@
 .tweet-color:hover{
     background-color: #f8f9fa;
 }
+
+.tweet__right--bottom--hukidashi{
+  position: relative;
+}
+.tweet__right--reply:hover + .henshin{
+  display: block;
+}
+.henshin{
+      display: none;
+      width: 30px;
+      position: absolute;
+      left:10px;
+      border-radius: 5px;
+      background: black;
+      color: white;
+      font-size: 8px;
+      padding: 5px;
+    }
+.tweet__right--favorite:hover + .iine{
+  display: block;
+}
+.iine{
+      display: none;
+      width: 40px;
+      position: absolute;
+      left:20px;
+      border-radius: 5px;
+      background: black;
+      color: white;
+      font-size: 8px;
+      padding: 5px;
+      left:30px;
+    }
