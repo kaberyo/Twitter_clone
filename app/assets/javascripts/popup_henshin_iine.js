@@ -1,5 +1,3 @@
-
-
 $(document).on('turbolinks:load', function(){
   $(function(){
     $('.tweet__right--reply').on({
