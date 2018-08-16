@@ -1,0 +1,15 @@
+= render "partial/navbar"
+.wrapper
+  .content.row
+    .content-left.col-md-3.offset-md-1
+      = render "partial/userPanel", {user: current_user}
+    .col-md-4.offset-col-4.my-3
+      - if @notification.present?
+        .userpanel-popup
+          = link_to "#{@notification.notified_by.username}", "/users/#{@notification.notified_by_id}"
+          = "さんはあなたのツイートにいいね♡しました"
+          .popup
+            = render "partial/userpanel_popup_from_recommend" , {recommend: @notification.notified_by}
+      = render "partial/tweet", {tweet: @tweet}
+    .content-rihgt.col-md-3.offset-col-8
+      = render partial: "partial/recommend"

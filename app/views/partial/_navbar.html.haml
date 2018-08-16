@@ -15,6 +15,7 @@
         = text_field_tag :name, "",placeholder: "ユーザー&ツイート検索",class: 'form-control mr-sm-1 form-control-sm',name: "keyword",id:'user-search-field',autocomplete: "off"
         = button_tag(type: "submit", class: "btn btn-default mr-sm-2 search-btn-color") do
           %i.fas.fa-search
+      = render 'notifications/notification_dropdown'
       = link_to "/users/#{current_user.id}" , class: "mr-md-3"do
         .tweet__left--user-avatar
           - if current_user.avator.present?
