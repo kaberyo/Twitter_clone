@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  get 'notifications/link_through'
+
   devise_for :users
   root "tweets#index"
   get '/post/hashtag/:name', to: "tweets#hashtags"
+  get 'notifications/:id/link_through', to: 'notifications#link_through',as: :link_through
 
   resources :tweets, only: [:index, :new, :create, :show] do
     resources :favorites , only: [:create, :destroy]

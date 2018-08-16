@@ -4,6 +4,7 @@ class Tweet < ActiveRecord::Base
   has_many :users, through: :favorites
   has_many :tweets_tags
   has_many :tags, through: :tweets_tags
+  has_many :notifications, dependent: :destroy
 
   has_many :active_retweets, class_name: "Retweet", foreign_key: "owner_id", dependent: :destroy
   has_many :passive_retweets, class_name: "Retweet", foreign_key: "target_id", dependent: :destroy

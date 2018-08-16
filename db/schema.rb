@@ -23,6 +23,20 @@ ActiveRecord::Schema.define(version: 20180816102059) do
   add_index "favorites", ["tweet_id"], name: "fk_rails_349c89a345", using: :btree
   add_index "favorites", ["user_id"], name: "fk_rails_d15744e438", using: :btree
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "user_id",        limit: 4
+    t.integer  "notified_by_id", limit: 4
+    t.integer  "tweet_id",       limit: 4
+    t.string   "notified_type",  limit: 255
+    t.boolean  "read",                       default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "notifications", ["notified_by_id"], name: "index_notifications_on_notified_by_id", using: :btree
+  add_index "notifications", ["tweet_id"], name: "index_notifications_on_tweet_id", using: :btree
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
+
   create_table "relationships", force: :cascade do |t|
     t.integer  "following_id", limit: 4, null: false
     t.integer  "follower_id",  limit: 4, null: false
@@ -107,6 +121,9 @@ ActiveRecord::Schema.define(version: 20180816102059) do
 
   add_foreign_key "favorites", "tweets"
   add_foreign_key "favorites", "users"
+  add_foreign_key "notifications", "tweets"
+  add_foreign_key "notifications", "users"
+  add_foreign_key "notifications", "users", column: "notified_by_id"
   add_foreign_key "relationships", "tweets", column: "follower_id"
   add_foreign_key "relationships", "users", column: "following_id"
   add_foreign_key "retweets", "tweets", column: "target_id"

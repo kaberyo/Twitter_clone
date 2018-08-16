@@ -1,0 +1,9 @@
+.dropdown.notification-dropdown
+  %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+    = current_user.notifications.where(read: false).count
+    %span.glyphicon.glyphicon-flag
+      %i.fa.fa-bell{"aria-hidden" => "true"}>
+      通知
+  %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
+    %li.dropdown-header.text-center Notifications
+    = render current_user.notifications.where(read: false).order('created_at DESC').last(5)
