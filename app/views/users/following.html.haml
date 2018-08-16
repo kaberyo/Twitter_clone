@@ -64,7 +64,7 @@
                 - @tweet_medias.first(9).each do |tweet_media|
                   =link_to (tweet_path(tweet_media)) do
                     = image_tag tweet_media.media.url, class: 'my-1 image_trimming', width: "70",height: "70"
-          = render partial: "partial/recommend",collection: @recommends
+          = render partial: "partial/recommend"
           .card.my-4
             .card-body
               %h4.card-title トレンド
