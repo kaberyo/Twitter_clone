@@ -1,3 +1,29 @@
 .tweet-color:hover{
     background-color: #f8f9fa;
 }
+.tweet__right--bottom--hukidashi{
+  position: relative;
+}
+.reply_popup{
+      display: none;
+      width: 30px;
+      position: absolute;
+      left:10px;
+      border-radius: 5px;
+      background: black;
+      color: white;
+      font-size: 8px;
+      padding: 5px;
+}
+.favorite_popup{
+      display: none;
+      width: 40px;
+      position: absolute;
+      left:20px;
+      border-radius: 5px;
+      background: black;
+      color: white;
+      font-size: 8px;
+      padding: 5px;
+      left:30px;
+}
