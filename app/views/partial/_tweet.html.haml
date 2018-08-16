@@ -48,6 +48,9 @@
                 %i.fas.fa-reply
             .reply_popup
               返信
+          .tweet__right--retweet.float-left
+            = link_to new_retweet_path(id: tweet.id) do
+              %i.fas.fa-retweet
           .tweet__right--favorite.float-left
             = render "partial/favorite" , {tweet: tweet}
             .favorite_popup

@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     collection do
       get :search
     end
+    member do
+      get :targets, :owners
+    end
   end
   resources :users, only: [:index,:edit,:show,:update] do
     member do
@@ -15,5 +18,6 @@ Rails.application.routes.draw do
     end
   end
   resources :relationships, only: [:create, :destroy]
+  resources :retweets, only: [:new, :create, :destroy]
 
 end

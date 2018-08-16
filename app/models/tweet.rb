@@ -2,11 +2,13 @@ class Tweet < ActiveRecord::Base
   belongs_to :user
   has_many :favorites
   has_many :users, through: :favorites
-  has_many :retweets
-  has_many :users, through: :retweets
   has_many :tweets_tags
   has_many :tags, through: :tweets_tags
 
+  has_many :active_retweets, class_name: "Retweet", foreign_key: "owner_id", dependent: :destroy
+  has_many :passive_retweets, class_name: "Retweet", foreign_key: "target_id", dependent: :destroy
+  has_many :targets, through: :active_retweets, source: :target
+  has_many :owners, through: :active_retweets, source: :owner
 
   mount_uploader :media, MediaUploader
   validates :text, presence: true, length: { maximum: 140 } ,unless: :media?
