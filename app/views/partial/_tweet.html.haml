@@ -21,8 +21,11 @@
         %h6.card-subtitle.mb-2.text-muted.d-inline
           = link_to "#{tweet.created_at.to_s(:human)}", tweet_path(id: tweet.id)
       .btn-group.float-right
-        = link_to "削除", tweet_path(id: tweet.id), method: "delete", class: "displaynone"
-        %i.fas.fa-eraser
+        - if tweet.user_id == current_user.id
+          - if tweet.owners.present?
+          - else
+            = link_to tweet_path(id: tweet.id), method: "delete" do
+              %i.fas.fa-eraser
       .tweet__right--main
         - if tweet.parent_id?
           .tweet__right--reply
