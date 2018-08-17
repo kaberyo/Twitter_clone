@@ -1,8 +1,7 @@
 $(function(){
   function buildMESSAGE(tweet) {
      var tweets = $('#tweet_body').prepend(`
-<a href = "#" class="wrapper card my-2 tweet-color tweet_original" data-id="${tweet.id}" >${ tweet.text }</a>
-
+<a href = "#" class="wrapper card my-2 tweet-color tweet_original" data-id="${tweet.id}" >@${tweet.user_name}さんから新しいツイートがあります。</a>
      `)
   }
   $(function(){
