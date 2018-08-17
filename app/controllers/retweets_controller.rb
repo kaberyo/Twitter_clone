@@ -10,10 +10,14 @@ class RetweetsController < ApplicationController
     @tweet.save
     tweet = Tweet.find(params.require(:tweet).permit(:parent_id).fetch("parent_id"))
     @tweet.retweet(tweet)
-    redirect_to (:back)
+    redirect_to root_path
   end
 
   def destroy
+    @tweet = Retweet.find(params[:id]).targets
+    tweet =
+    tweet.unretweet(@tweet)
+    redirect_to root_path
   end
 
   private

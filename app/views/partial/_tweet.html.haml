@@ -38,6 +38,8 @@
         - else
         %a.card-title
           = render_with_hashtags(tweet.text)
+          - if tweet.targets.present?
+            = render partial: "partial/tweet", collection: tweet.targets
       .tweet__right--media
         = image_tag tweet.media.url, class: 'img-fluid' if tweet.media.present?
       .tweet__right--bottom
@@ -49,8 +51,11 @@
             .reply_popup
               返信
           .tweet__right--retweet.float-left
-            = link_to new_retweet_path(id: tweet.id) do
-              %i.fas.fa-retweet
+            - if tweet.retweet?(tweet)
+            -else
+              = link_to new_retweet_path(id: tweet.id) do
+                %i.fas.fa-retweet
+            = tweet.owners.count
           .tweet__right--favorite.float-left
             = render "partial/favorite" , {tweet: tweet}
             .favorite_popup

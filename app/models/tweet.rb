@@ -9,7 +9,7 @@ class Tweet < ActiveRecord::Base
   has_many :active_retweets, class_name: "Retweet", foreign_key: "owner_id", dependent: :destroy
   has_many :passive_retweets, class_name: "Retweet", foreign_key: "target_id", dependent: :destroy
   has_many :targets, through: :active_retweets, source: :target
-  has_many :owners, through: :active_retweets, source: :owner
+  has_many :owners, through: :passive_retweets, source: :owner
 
   mount_uploader :media, MediaUploader
   validates :text, presence: true, length: { maximum: 140 } ,unless: :media?
@@ -23,7 +23,7 @@ class Tweet < ActiveRecord::Base
   end
 
   def unretweet(other_tweet)
-    active_retweets.create(target_id: other_tweet.id).destroy
+    active_retweets.find_by(target_id: other_tweet.id).destroy
   end
 
   def retweet?(other_tweet)

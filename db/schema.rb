@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180816102059) do
+ActiveRecord::Schema.define(version: 20180816220931) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer  "user_id",    limit: 4, null: false
@@ -48,14 +48,14 @@ ActiveRecord::Schema.define(version: 20180816102059) do
   add_index "relationships", ["following_id"], name: "fk_rails_a3d77c3b00", using: :btree
 
   create_table "retweets", force: :cascade do |t|
-    t.integer  "owner_id",   limit: 4, null: false
-    t.integer  "target_id",  limit: 4, null: false
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.integer  "owner_id",   limit: 4
+    t.integer  "target_id",  limit: 4
   end
 
   add_index "retweets", ["owner_id", "target_id"], name: "index_retweets_on_owner_id_and_target_id", unique: true, using: :btree
-  add_index "retweets", ["target_id"], name: "fk_rails_05003de183", using: :btree
+  add_index "retweets", ["target_id"], name: "fk_rails_203a7ce61a", using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -126,8 +126,8 @@ ActiveRecord::Schema.define(version: 20180816102059) do
   add_foreign_key "notifications", "users", column: "notified_by_id"
   add_foreign_key "relationships", "tweets", column: "follower_id"
   add_foreign_key "relationships", "users", column: "following_id"
+  add_foreign_key "retweets", "tweets", column: "owner_id"
   add_foreign_key "retweets", "tweets", column: "target_id"
-  add_foreign_key "retweets", "users", column: "owner_id"
   add_foreign_key "tweets", "users"
   add_foreign_key "tweets_tags", "tags"
   add_foreign_key "tweets_tags", "tweets"
