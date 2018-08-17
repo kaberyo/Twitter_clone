@@ -1,7 +1,7 @@
 $(function(){
   function buildMESSAGE(tweet) {
      var tweets = $('#tweet_body').prepend(`
-<div class="wrapper card my-2 tweet-color tweet_original" data-id="${tweet.id}" >${ tweet.text }${ tweet.id }</div>
+<a href = "#" class="wrapper card my-2 tweet-color tweet_original" data-id="${tweet.id}" >${ tweet.text }</a>
 
      `)
   }
