@@ -8,8 +8,8 @@ class Tweet < ActiveRecord::Base
 
   has_many :active_retweets, class_name: "Retweet", foreign_key: "owner_id", dependent: :destroy
   has_many :passive_retweets, class_name: "Retweet", foreign_key: "target_id", dependent: :destroy
-  has_many :targets, through: :active_retweets, source: :target
-  has_many :owners, through: :passive_retweets, source: :owner
+  has_many :targets, through: :active_retweets, source: :target, dependent: :destroy
+  has_many :owners, through: :passive_retweets, source: :owner, dependent: :destroy
 
   mount_uploader :media, MediaUploader
   validates :text, presence: true, length: { maximum: 140 } ,unless: :media?

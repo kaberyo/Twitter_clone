@@ -32,6 +32,9 @@ class TweetsController < ApplicationController
     end
   end
 
+  def destroy
+  end
+
   def search
     @tweets = Tweet.where('text LIKE(?)',"%#{params[:keyword]}%")
     @tag =""

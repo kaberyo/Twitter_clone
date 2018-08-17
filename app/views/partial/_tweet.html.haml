@@ -20,14 +20,9 @@
           = "@#{tweet.user.username}"
         %h6.card-subtitle.mb-2.text-muted.d-inline
           = link_to "#{tweet.created_at.to_s(:human)}", tweet_path(id: tweet.id)
-        .btn-group.float-right
-          %button.btn.btn-muted.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", type: "button"}
-          .dropdown-menu
-            %a.dropdown-item{:href => "#"} メニュー1
-            %a.dropdown-item{:href => "#"} メニュー2
-            %a.dropdown-item{:href => "#"} メニュー3
-            .dropdown-divider
-            %a.dropdown-item{:href => "#"} その他リンク
+      .btn-group.float-right
+        = link_to "削除", tweet_path(id: tweet.id), method: "delete", class: "displaynone"
+        %i.fas.fa-eraser
       .tweet__right--main
         - if tweet.parent_id?
           .tweet__right--reply
