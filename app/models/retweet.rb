@@ -1,4 +1,4 @@
 class Retweet < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :tweet
+  belongs_to :owner, class_name: "Tweet"
+  belongs_to :target, class_name: "Tweet"
 end

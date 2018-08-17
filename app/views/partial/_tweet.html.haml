@@ -20,6 +20,12 @@
           = "@#{tweet.user.username}"
         %h6.card-subtitle.mb-2.text-muted.d-inline
           = link_to "#{tweet.created_at.to_s(:human)}", tweet_path(id: tweet.id)
+      .btn-group.float-right
+        - if tweet.user_id == current_user.id
+          - if tweet.owners.present?
+          - else
+            = link_to tweet_path(id: tweet.id), method: "delete" do
+              %i.fas.fa-eraser
       .tweet__right--main
         - if tweet.parent_id?
           .tweet__right--reply
@@ -30,6 +36,8 @@
         - else
         %a.card-title
           = render_with_hashtags(tweet.text)
+          - if tweet.targets.present?
+            = render partial: "partial/tweet", collection: tweet.targets
       .tweet__right--media
         = image_tag tweet.media.url, class: 'img-fluid' if tweet.media.present?
       .tweet__right--bottom
@@ -40,6 +48,12 @@
                 %i.fas.fa-reply
             .reply_popup
               返信
+          .tweet__right--retweet.float-left
+            - if tweet.retweet?(tweet)
+            -else
+              = link_to new_retweet_path(id: tweet.id) do
+                %i.fas.fa-retweet
+            = tweet.owners.count
           .tweet__right--favorite.float-left
             = render "partial/favorite" , {tweet: tweet}
             .favorite_popup
