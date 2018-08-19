@@ -17,6 +17,23 @@ $(document).on('turbolinks:load', function(){
 
 $(document).on('turbolinks:load', function(){
   $(function(){
+    $('.tweet__right--retweet').on({
+      'mouseenter':function(){
+       var dummy = $(this);
+       sethover = setTimeout(function(){
+        dummy.find('.retweet_popup').fadeIn(200);
+      },500);
+    },
+      'mouseleave':function(){
+        $('.tweet__right--retweet').find('.retweet_popup').fadeOut(200);
+        clearTimeout(sethover);
+      }
+    });
+  });
+});
+
+$(document).on('turbolinks:load', function(){
+  $(function(){
     $('.tweet__right--favorite').on({
       'mouseenter':function(){
         var dummy = $(this);

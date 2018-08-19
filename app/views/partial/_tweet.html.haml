@@ -54,6 +54,8 @@
               = link_to new_retweet_path(id: tweet.id) do
                 %i.fas.fa-retweet
             = tweet.owners.count
+            .retweet_popup
+              リツイート
           .tweet__right--favorite.float-left
             = render "partial/favorite" , {tweet: tweet}
             .favorite_popup
