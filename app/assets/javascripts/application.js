@@ -16,3 +16,4 @@
 //= require bootstrap
 //= require_tree .
 //= require jquery.remotipart
+// = require data-confirm-modal
