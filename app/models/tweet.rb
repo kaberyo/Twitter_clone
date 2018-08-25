@@ -1,6 +1,6 @@
 class Tweet < ActiveRecord::Base
   belongs_to :user
-  has_many :favorites
+  has_many :favorites,dependent: :destroy
   has_many :users, through: :favorites
   has_many :tweets_tags
   has_many :tags, through: :tweets_tags

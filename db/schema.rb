@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180816220931) do
+ActiveRecord::Schema.define(version: 20180825055541) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer  "user_id",    limit: 4, null: false
@@ -31,8 +31,10 @@ ActiveRecord::Schema.define(version: 20180816220931) do
     t.boolean  "read",                       default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "favorite_id",    limit: 4
   end
 
+  add_index "notifications", ["favorite_id"], name: "fk_rails_73c21ff79c", using: :btree
   add_index "notifications", ["notified_by_id"], name: "index_notifications_on_notified_by_id", using: :btree
   add_index "notifications", ["tweet_id"], name: "index_notifications_on_tweet_id", using: :btree
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
@@ -121,6 +123,7 @@ ActiveRecord::Schema.define(version: 20180816220931) do
 
   add_foreign_key "favorites", "tweets"
   add_foreign_key "favorites", "users"
+  add_foreign_key "notifications", "favorites"
   add_foreign_key "notifications", "tweets"
   add_foreign_key "notifications", "users"
   add_foreign_key "notifications", "users", column: "notified_by_id"
