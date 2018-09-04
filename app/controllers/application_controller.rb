@@ -63,9 +63,9 @@ class ApplicationController < ActionController::Base
     day_from = Time.now - 1.day
     week_from = Time.now - 1.week
     to = Time.now
-    @trend = Tag.where(updated_at: hour_from..to).order("tags_count DESC").limit(6)
-    @day_trend = Tag.where(updated_at: day_from..to).order("tags_count DESC").limit(6)
-    @week_trend = Tag.where(updated_at: week_from..to).order("tags_count DESC").limit(6)
+    @trend = Tag.where(created_at: hour_from..to).order("tags_count DESC").limit(6)
+    @day_trend = Tag.where(created_at: day_from..to).order("tags_count DESC").limit(6)
+    @week_trend = Tag.where(created_at: week_from..to).order("tags_count DESC").limit(6)
 
   end
 
