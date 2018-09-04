@@ -37,7 +37,6 @@ class TweetsController < ApplicationController
   end
 
   def destroy
-    # binding.pry
     @tweet = Tweet.find(params[:id])
     @tweet.destroy
     redirect_to root_path
