@@ -8,7 +8,6 @@ class TweetsController < ApplicationController
     respond_to do |format|
       format.html # html形式でアクセスがあった場合は特に何もなし(@tweets = Tweet.allして終わり）
       format.json { @new_tweet = @tweets.where('id > ?', params[:tweet][:id]) } # json形式でアクセスがあった場合は、params[:tweet][:id]よりも大きいidがないかTweetから検索して、@new_tweetに代入する
-      binding.pry
     end
   end
 
@@ -38,7 +37,6 @@ class TweetsController < ApplicationController
   end
 
   def destroy
-    # binding.pry
     @tweet = Tweet.find(params[:id])
     @tweet.destroy
     redirect_to root_path
