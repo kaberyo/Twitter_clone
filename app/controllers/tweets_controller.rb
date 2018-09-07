@@ -52,6 +52,17 @@ class TweetsController < ApplicationController
     @tweets = @tag.tweets.order("created_at DESC").limit(10)
   end
 
+  def moment
+    require 'net/http'
+    require 'uri'
+    require 'json'
+
+    uri = URI.parse('https://newsapi.org/v2/top-headlines?country=jp&apiKey=dd107ea1a63245cd8ddd7d632dd4bac5') #news_API
+    json = Net::HTTP.get(uri)
+    moments = JSON.parse(json)
+    @moments = moments['articles']
+ end
+
   private
   def tweet_params
     params.require(:tweet).permit(:text, :media, :parent_id).merge(user_id: current_user.id)

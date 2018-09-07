@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :tweets, only: [:index, :new, :create, :destroy, :show] do
     resources :favorites , only: [:create, :destroy]
     collection do
-      get :search
+      get :search,:moment
     end
     member do
       get :targets, :owners

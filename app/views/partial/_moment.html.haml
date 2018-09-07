@@ -1,0 +1,13 @@
+.pt-md-3
+  .card
+    .p-md-3
+      .row
+        .col-md-8
+          %h2
+            = moment["title"]
+          %p
+            = moment["description"]
+          %p
+            = link_to "View details »", "#{moment["url"]} " ,class:"img-responsive"
+        .col-md-4
+          = image_tag "#{moment["urlToImage"]}", class:"news-image"
