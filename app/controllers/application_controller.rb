@@ -59,6 +59,7 @@ class ApplicationController < ActionController::Base
       tag.tags_count = tag.tweets.count
       tag.save
     end
+
     hour_from = Time.now - 1.hour
     day_from = Time.now - 1.day
     week_from = Time.now - 1.week
