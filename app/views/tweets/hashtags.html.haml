@@ -2,14 +2,13 @@
 = render "partial/searchBar" ,{tag: @tag}
 .wrapper
   .content.row
-    .content-left.col-md-3.offset-md-1
+    .content-left.col-md-3.offset-md-1.my-4
       = render partial: "partial/recommend"
       .card.my-4
         .card-body
           %h4.card-title トレンド
           = render partial: "partial/trend", collection: @trend
-    .content__timeline.col-md-4
+    .content__timeline.col-md-4.my-4
       #tweet_body
         - @tweets.each do |tweet|
           = render "partial/tweet", {tweet: tweet}
-
