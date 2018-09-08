@@ -1,6 +1,6 @@
 .card.tweet_form_body
   = form_for Tweet.new , remote: true do |f|
-    = f.text_area :text, class: 'my-4 col-md-10 offset-md-1 form-rounded form-control tweet_form_content ', placeholder: 'いまどうしてる？',rows: "3"
+    = f.text_area :text, class: 'my-4 col-md-10 offset-md-1 form-rounded form-control tweet_form_content ', placeholder: 'いまどうしてる？',rows: "4"
     .content__timeline__photo
     %label.offset-md-7.my-1
       = fa_icon 'picture', class: 'fa fa-image'

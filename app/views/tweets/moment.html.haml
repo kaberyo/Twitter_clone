@@ -1,8 +1,22 @@
 = render "partial/navbar"
+.container-fluid.border-bottom{:style => "background-color: white;"}
+  .row
+    .col-md-3
+    .col-md-6.p-md-2
+      = link_to "TOP","/tweets/moment",class: "badge badge-pill badge-primary"
+      = link_to "ビジネス","/tweets/moment/business",class: "badge badge-pill badge-dark"
+      = link_to "エンターテイメント","/tweets/moment/entertainment",class: "badge badge-pill badge-success"
+      = link_to "ヘルス","/tweets/moment/health",class: "badge badge-pill badge-danger"
+      = link_to "サイエンス","/tweets/moment/science",class: "badge badge-pill badge-warning"
+      = link_to "スポーツ","/tweets/moment/sports",class: "badge badge-pill badge-info"
+      = link_to "テクノロジー","/tweets/moment/technology",class: "badge badge-pill badge-secondary"
 .container-fluid
   .row
     .col-md-3
     .col-md-6
+      %h1.pt-md-3
+        - if @genre.present?
+          = @genre
+        - else
+          = "TOP"
       = render partial: "partial/moment", collection: @moments
-    .col-md-3
-

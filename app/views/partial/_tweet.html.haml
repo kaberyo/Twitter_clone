@@ -35,7 +35,7 @@
             %br
         - else
         %a.card-title
-          = render_with_hashtags(tweet.text)
+          = text_url_to_link_with_hashtags("#{simple_format(h(tweet.text))}")
           - if tweet.targets.present?
             = render partial: "partial/tweet", collection: tweet.targets
       .tweet__right--media

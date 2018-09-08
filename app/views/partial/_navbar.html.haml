@@ -1,4 +1,4 @@
-.sticky-top.shadow-sm
+.shadow-sm.sticky-top
   #user-search-result.list-group
   %nav.navbar.navbar-light.navbar-expand-lg.border-bottom{:style => "background-color: white;"}
     #navbarSupportedContent.collapse.navbar-collapse
@@ -30,11 +30,11 @@
             = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'dropdown-item'
       %button.btn.btn-sm.badge-pill.btn-primary.mx-2.mr-md-5{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
         ツイート
-      #myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "5"}
+      #myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
         .modal-dialog.modal-dialog-centered{:role => "document"}
           .modal-content
             .modal-header
-              %h5#exampleModalLabel.modal-title 新しいツイート
+              %h5.modal-title 新しいツイート
               %button.close{"aria-label" => "閉じる", "data-dismiss" => "modal", :type => "button"}
                 %span{"aria-hidden" => "true"} ×
             .modal-body

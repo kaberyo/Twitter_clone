@@ -1,13 +1,33 @@
-.pt-md-3
+.pt-md-2
   .card
     .p-md-3
       .row
         .col-md-8
-          %h2
+          %h3
             = moment["title"]
+          %h4.badge.badge-secondary
+            = moment["source"]["name"]
           %p
             = moment["description"]
-          %p
-            = link_to "View details »", "#{moment["url"]} " ,class:"img-responsive"
+          = link_to "View details »", "#{moment["url"]} " ,class:"img-responsive"
+          %button.btn.btn-sm.badge-pill.btn-primary.ml-md-3{"data-target": "#momentModal", "data-toggle": "modal", type: "button" ,"data-title": "#{moment["title"]}","data-url": "#{moment["url"]}"}
+            ツイート
+          #momentModal.modal.fade{"aria-hidden": "true", "aria-labelledby": "momentModalLabel", role: "dialog", tabindex: "-1"}
+            .modal-dialog{role:"document"}
+              .modal-content
+                .modal-header
+                  %h5#momentModalLabel.modal-title この記事のツイート
+                  %button.close{"aria-label": "Close", "data-dismiss": "modal", type: "button"}
+                    %span{"aria-hidden": "true"} ×
+                .modal-body
+                  .card.tweet_form_body
+                    = form_for Tweet.new , remote: true do |f|
+                      = f.text_area :text, class: 'my-4 col-md-10 offset-md-1 form-rounded form-control tweet_form_content tweet_moment_content' ,placeholder: 'いまどうしてる？',rows: "10"
+                      .content__timeline__photo
+                      %label.offset-md-7.my-1
+                        = fa_icon 'picture', class: 'fa fa-image'
+                        = f.file_field "media" , class: 'tweet_form_content_image displaynone'
+                      = f.hidden_field :parent_id, value: ""
+                      = f.submit '新しいツイート',type: "submit", class: 'btn btn-sm badge-pill btn-primary float-right mb-md-3 mr-md-4', id: "modal-submit"
         .col-md-4
           = image_tag "#{moment["urlToImage"]}", class:"news-image"

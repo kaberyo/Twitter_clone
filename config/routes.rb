@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   root "tweets#index"
   get '/post/hashtag/:name', to: "tweets#hashtags"
+  get '/tweets/moment/:genre', to: "tweets#moment"
   get 'notifications/:id/link_through', to: 'notifications#link_through',as: :link_through
 
   resources :tweets, only: [:index, :new, :create, :destroy, :show] do

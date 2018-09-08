@@ -56,8 +56,12 @@ class TweetsController < ApplicationController
     require 'net/http'
     require 'uri'
     require 'json'
-
-    uri = URI.parse('https://newsapi.org/v2/top-headlines?country=jp&apiKey=dd107ea1a63245cd8ddd7d632dd4bac5') #news_API
+    if params[:genre].present?
+     @genre = params[:genre]
+    else
+      @genre = ""
+    end
+    uri = URI.parse('https://newsapi.org/v2/top-headlines?country=jp&category=' + @genre + '&apiKey=dd107ea1a63245cd8ddd7d632dd4bac5') #news_API
     json = Net::HTTP.get(uri)
     moments = JSON.parse(json)
     @moments = moments['articles']
