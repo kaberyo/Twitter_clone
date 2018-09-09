@@ -12,6 +12,8 @@
           = link_to "View details »", "#{moment["url"]} " ,class:"img-responsive"
           %button.btn.btn-sm.badge-pill.btn-primary.ml-md-3{"data-target": "#momentModal", "data-toggle": "modal", type: "button" ,"data-title": "#{moment["title"]}","data-url": "#{moment["url"]}"}
             ツイート
+          %a.btn.btn-sm.badge-pill.btn-success{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapseExample-#{i}", :role => "button"}
+            ツイート一覧
           #momentModal.modal.fade{"aria-hidden": "true", "aria-labelledby": "momentModalLabel", role: "dialog", tabindex: "-1"}
             .modal-dialog{role:"document"}
               .modal-content
@@ -31,3 +33,9 @@
                       = f.submit '新しいツイート',type: "submit", class: 'btn btn-sm badge-pill btn-primary float-right mb-md-3 mr-md-4', id: "modal-submit"
         .col-md-4
           = image_tag "#{moment["urlToImage"]}", class:"news-image"
+        %div{ id: "collapseExample-#{i}" ,class: "collapse" }
+          - title = moment["title"]
+          - tags = Tag.where(name: title.gsub(" ", ""))
+          - tags.each do |tag|
+          - @tweets = tag.tweets
+            = render partial: "partial/tweet", collection: @tweets
