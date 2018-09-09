@@ -19,4 +19,6 @@
           = @genre
         - else
           = "TOP"
-      = render partial: "partial/moment", collection: @moments
+      - @moments.each_with_index do |moment, i|
+        = render "partial/moment", moment: moment ,i: i
+      / = render partial: "partial/moment", collection: @moments
