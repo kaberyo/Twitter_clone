@@ -4,10 +4,8 @@
   .content.row
     .content-left.col-md-3.offset-md-1
       = render partial: "partial/recommend"
-      .card.my-4
-        .card-body
-          %h4.card-title トレンド
-          = render partial: "partial/trend", collection: @trend
+      .my-4
+        = render partial: "partial/time_trend",locals:{trend: @trend, day_trend: @day_trend, week_trend: @week_trend}
     .content__timeline.col-md-8
       .row-eq-height.my-4
         - @users.each do |user|
