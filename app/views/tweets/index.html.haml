@@ -4,22 +4,7 @@
     .content-left.col-md-3.offset-md-1
       = render "partial/userPanel", {user: current_user}
       .my-4
-        %ul.nav.nav-tabs
-          %li.nav-item
-            %a.nav-link.active{"data-toggle": "tab", href: "#latast-trands"} hour
-          %li.nav-item
-            %a.nav-link{"data-toggle": "tab", href: "#day-trands"} day
-          %li.nav-item
-            %a.nav-link{"data-toggle": "tab", href: "#week-trands"} week
-        .card.pl-md-3.pt-md-3.pb-md-3
-          %h4 トレンド
-          .tab-content
-            #latast-trands.tab-pane.active
-              = render partial: "partial/trend", collection: @trend
-            #day-trands.tab-pane
-              = render partial: "partial/trend", collection: @day_trend, as: "trend"
-            #week-trands.tab-pane
-              = render partial: "partial/trend", collection: @week_trend, as: "trend"
+        = render partial: "partial/time_trend",locals:{trend: @trend, day_trend: @day_trend, week_trend: @week_trend}
     .content__timeline.col-md-4
       .my-4.bg-light
         = render "partial/tweetForm"

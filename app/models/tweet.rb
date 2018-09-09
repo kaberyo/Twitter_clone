@@ -32,7 +32,7 @@ class Tweet < ActiveRecord::Base
 
   after_create do
     tweet = Tweet.find_by(id: self.id)
-    hashtags  = self.text.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー、,０-９「」・?？？＆“”…]+/)
+    hashtags  = self.text.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー、,０-９「」｢｣・?？？＆“”…Ａ-Ｚａ-ｚ【】]+/)
     hashtags.uniq.map do |hashtag|
       tag = Tag.find_or_create_by(name: hashtag.downcase.delete('#'))
       tweet.tags << tag

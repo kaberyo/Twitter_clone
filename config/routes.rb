@@ -22,8 +22,6 @@ Rails.application.routes.draw do
       get :following, :followers, :favorites
     end
   end
-
   resources :relationships, only: [:create, :destroy]
   resources :retweets, only: [:new, :create, :destroy]
-
 end

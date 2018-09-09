@@ -33,9 +33,11 @@
                       = f.submit '新しいツイート',type: "submit", class: 'btn btn-sm badge-pill btn-primary float-right mb-md-3 mr-md-4', id: "modal-submit"
         .col-md-4
           = image_tag "#{moment["urlToImage"]}", class:"news-image"
-        %div{ id: "collapseExample-#{i}" ,class: "collapse" }
-          - title = moment["title"]
-          - tags = Tag.where(name: title.gsub(" ", ""))
-          - tags.each do |tag|
-          - @tweets = tag.tweets
-            = render partial: "partial/tweet", collection: @tweets
+        .col-md-1
+        .col-md-10
+          %div{ id: "collapseExample-#{i}" ,class: "collapse" }
+            - title = moment["title"]
+            - tags = Tag.where(name: title.gsub(" ", ""))
+            - tags.each do |tag|
+            - @tweets = tag.tweets
+              = render partial: "partial/tweet", collection: @tweets
