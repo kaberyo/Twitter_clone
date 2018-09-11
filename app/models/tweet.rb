@@ -3,7 +3,7 @@ class Tweet < ActiveRecord::Base
   has_many :favorites,dependent: :destroy
   has_many :users, through: :favorites
   has_many :tweets_tags
-  has_many :tags, through: :tweets_tags
+  has_many :tags, through: :tweets_tags ,dependent: :destroy
   has_many :notifications, dependent: :destroy
 
   has_many :active_retweets, class_name: "Retweet", foreign_key: "owner_id", dependent: :destroy
