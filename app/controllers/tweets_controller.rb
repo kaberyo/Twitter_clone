@@ -1,4 +1,6 @@
 class TweetsController < ApplicationController
+  require "api_helper"
+  include ApiHelper
   before_action :recommend_users, only: [:index, :search ,:hashtags ,:show]
   before_action :tagscount, only: [:index, :search,:hashtags]
   before_action :set_tweet, only: [:index, :search, :hashtags]
@@ -7,7 +9,8 @@ class TweetsController < ApplicationController
     @tweets = Tweet.where(user_id: current_user.following.ids.push(current_user.id)).reverse_order
     respond_to do |format|
       format.html # html形式でアクセスがあった場合は特に何もなし(@tweets = Tweet.allして終わり）
-      format.json { @new_tweet = @tweets.where('id > ?', params[:tweet][:id]) } # json形式でアクセスがあった場合は、params[:tweet][:id]よりも大きいidがないかTweetから検索して、@new_tweetに代入する
+      format.json { @new_tweet = @tweets.where('id > ?', params[:tweet][:id]) }
+      # json形式でアクセスがあった場合は、params[:tweet][:id]よりも大きいidがないかTweetから検索して、@new_tweetに代入する
     end
   end
 
@@ -53,19 +56,22 @@ class TweetsController < ApplicationController
   end
 
   def moment
-    require 'net/http'
-    require 'uri'
-    require 'json'
     if params[:genre].present?
-     @genre = params[:genre]
+      @genre = params[:genre]
     else
       @genre = ""
     end
-    uri = URI.parse('https://newsapi.org/v2/top-headlines?country=jp&category=' + @genre + '&apiKey=dd107ea1a63245cd8ddd7d632dd4bac5') #news_API
-    json = Net::HTTP.get(uri)
-    moments = JSON.parse(json)
-    @moments = moments['articles']
- end
+      url = 'https://newsapi.org/v2/top-headlines?country=jp&category=' + @genre + '&apiKey=dd107ea1a63245cd8ddd7d632dd4bac5' #news_API
+      # url = URI.parse('https://newsapi.org/v2/top-headlines?country=jp&category=' + @genre + '&apiKey=dd107ea1a63245cd8ddd7d632dd4bac5')
+      # json = Net::HTTP.get(uri)
+      # moments = JSON.parse(json)
+      moments = get_json(url) #get_jsonはmoduleで定義しているメゾット 参照先urlにアクセスできなかった場合
+    if moments
+      @moments = moments['articles']
+    else
+      redirect_to root_path
+    end
+  end
 
   private
   def tweet_params

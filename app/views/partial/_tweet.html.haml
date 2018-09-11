@@ -34,7 +34,7 @@
             = link_to "@#{parent_tweet.user.username}", user_path(id: parent_tweet.user_id), class: "replyblue"
             %br
         - else
-        %a.card-title
+        .card-title
           = text_url_to_link_with_hashtags("#{simple_format(h(tweet.text))}")
           - if tweet.targets.present?
             = render partial: "partial/tweet", collection: tweet.targets

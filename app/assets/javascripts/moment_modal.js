@@ -9,8 +9,8 @@ $(document).on('turbolinks:load', function(){
 });
 $(document).on('turbolinks:load', function(){
   $('#modal-submit').on('click', function () {
-      console.log("sakurai")
-      $('#momentModal').hide();
-      $('.modal-backdrop').hide();
+    location.reload();
+      // $('#momentModal').hide();
+      // $('.modal-backdrop').hide();
   });
 });
