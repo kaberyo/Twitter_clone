@@ -24,7 +24,7 @@
                 .modal-body
                   .card.tweet_form_body
                     = form_for Tweet.new , remote: true do |f|
-                      = f.text_area :text, class: 'my-4 col-md-10 offset-md-1 form-rounded form-control tweet_form_content tweet_moment_content' ,placeholder: 'いまどうしてる？',rows: "10"
+                      = f.text_area :text, class: 'my-4 col-md-10 offset-md-1 form-rounded form-control tweet_form_content tweet_moment_content',rows: "10"
                       .content__timeline__photo
                       %label.offset-md-7.my-1
                         = fa_icon 'picture', class: 'fa fa-image'
@@ -37,7 +37,7 @@
         .col-md-10
           %div{ id: "collapseExample-#{i}" ,class: "collapse" }
             - title = moment["title"]
-            - tags = Tag.where(name: title.gsub(" ", ""))
+            - tags = Tag.where(name: title.gsub(" ", "").gsub( "\/" , "／").gsub( "\[" , "(").gsub( "\]" , ")").gsub( "\." , ","))
             - tags.each do |tag|
             - @tweets = tag.tweets
               = render partial: "partial/tweet", collection: @tweets

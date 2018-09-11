@@ -1,6 +1,9 @@
 class TweetsController < ApplicationController
   require "api_helper"
   include ApiHelper
+  require 'net/http'
+  require 'uri'
+  require 'json'
   before_action :recommend_users, only: [:index, :search ,:hashtags ,:show]
   before_action :tagscount, only: [:index, :search,:hashtags]
   before_action :set_tweet, only: [:index, :search, :hashtags]
@@ -56,6 +59,7 @@ class TweetsController < ApplicationController
   end
 
   def moment
+
     if params[:genre].present?
       @genre = params[:genre]
     else
