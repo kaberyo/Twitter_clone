@@ -1,5 +1,4 @@
 module TweetsHelper
-  require "uri"
     def text_url_to_link_with_hashtags text
       URI.extract(text, ['http','https']).uniq.each do |url|
       sub_text = ""
