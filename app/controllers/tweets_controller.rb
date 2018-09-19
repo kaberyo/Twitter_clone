@@ -1,6 +1,7 @@
 class TweetsController < ApplicationController
   require "news_api"
   include NewsApi
+  require 'net/http'
   before_action :recommend_users, only: [:index, :search ,:hashtags ,:show]
   before_action :tagscount, only: [:index, :search,:hashtags]
   before_action :set_tweet, only: [:index, :search, :hashtags]
