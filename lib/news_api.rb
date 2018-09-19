@@ -1,4 +1,4 @@
-module ApiHelper
+module NewsApi
 
   def get_json(location, limit = 10)
     raise ArgumentError, 'too many HTTP redirects' if limit == 0
